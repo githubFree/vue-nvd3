@@ -3,7 +3,7 @@
     <h2>Group Bar chart</h2>
     <div class="uk-margin-bottom">
       <vn-group-bar :model="traffics"
-        :showControls=false
+        :showControls=true
         :stacked=true
         :groupSpacing=0.1>
       </vn-group-bar>

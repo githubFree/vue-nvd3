@@ -6,7 +6,7 @@ import BarChart from "./BarChart";
 import BubbleChart from "./BubbleChart";
 import SunburstChart from "./SunburstChart";
 import StackedAreaChart from "./StackedAreaChart";
-import GroupedMultiBar from "./GroupedMultiBar";
+import GroupedMultiBar from "./GroupedBarChart";
 import "nvd3/build/nv.d3.css";
 
 export default (Vue, options) => {
