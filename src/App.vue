@@ -43,6 +43,9 @@
                 <li>
                   <router-link :to="{name:'StackedAreaChart'}">Stacked area chart</router-link>
                 </li>
+                <li>
+                  <router-link :to="{name:'SunburstChart'}">Sunburst area chart</router-link>
+                </li>
               </ul>
             </div>
             <div class="uk-width-medium-3-4">
@@ -56,13 +59,13 @@
 </template>
 
 <script>
-  import 'uikit/dist/css/uikit.css'
-  import 'uikit/dist/css/uikit.almost-flat.css'
-  import 'uikit'
-  export default {
-    name: 'app',
-    mounted () {
-      this.$router.push({name:'BarChart'})
-    }
+import 'uikit/dist/css/uikit.css'
+import 'uikit/dist/css/uikit.almost-flat.css'
+import 'uikit'
+export default {
+  name: 'app',
+  mounted () {
+    this.$router.push({ name: 'BarChart' })
   }
+}
 </script>

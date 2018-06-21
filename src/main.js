@@ -13,19 +13,21 @@ import LineBarChartExample from './examples/LineBarChart.vue'
 import LineChartExample from './examples/LineChart.vue'
 import PieChartExample from './examples/PieChart.vue'
 import StackedAreaChartExample from './examples/StackedAreaChart.vue'
+import SunburstChartExample from './examples/SunburstChart.vue'
 
 Vue.use(VueNVD3)
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    {name: 'BarChart', path: '/examples/bar-chart', component: BarChartExample},
-    {name: 'BubbleChart', path: '/examples/bubble-chart', component: BubbleChartExample},
-    {name: 'HBarChart', path: '/examples/hbar-chart', component: HBarChartExample},
-    {name: 'LineBarChart', path: '/examples/line-bar-chart', component: LineBarChartExample},
-    {name: 'LineChart', path: '/examples/line-chart', component: LineChartExample},
-    {name: 'PieChart', path: '/examples/pie-chart', component: PieChartExample},
-    {name: 'StackedAreaChart', path: '/examples/stacked-area-chart', component: StackedAreaChartExample}
+    { name: 'BarChart', path: '/examples/bar-chart', component: BarChartExample },
+    { name: 'BubbleChart', path: '/examples/bubble-chart', component: BubbleChartExample },
+    { name: 'HBarChart', path: '/examples/hbar-chart', component: HBarChartExample },
+    { name: 'LineBarChart', path: '/examples/line-bar-chart', component: LineBarChartExample },
+    { name: 'LineChart', path: '/examples/line-chart', component: LineChartExample },
+    { name: 'PieChart', path: '/examples/pie-chart', component: PieChartExample },
+    { name: 'StackedAreaChart', path: '/examples/stacked-area-chart', component: StackedAreaChartExample },
+    { name: 'SunburstChart', path: '/examples/sunburst-chart', component: SunburstChartExample }
   ]
 })
 
@@ -34,5 +36,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: {App}
+  components: { App }
 })
