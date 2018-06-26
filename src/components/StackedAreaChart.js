@@ -13,19 +13,30 @@ export default {
     showControls: { type: Boolean, default: true },
     clipEdge: { type: Boolean, default: true },
     chartStyle: { type: String, default: "stack" },
+    margin: {
+      type: Object,
+      default: () => {
+        return {
+          top: 0,
+          right: 50,
+          bottom: 30,
+          left: 30
+        };
+      }
+    },
     colors: { type: Array, default: () => ["#82DFD6", "#ddd"] }
   },
   mounted() {
     nv.addGraph(() => {
       const chart = nv.models
         .stackedAreaChart()
-        .margin({ right: 100 })
         .useInteractiveGuideline(true) //Tooltips which show all data points. Very nice!
         .rightAlignYAxis(this.rightAlignYAxis) //Let's move the y-axis to the right side.
         // .transitionDuration(500)
         .showControls(this.showControls) //Allow user to choose 'Stacked', 'Stream', 'Expanded' mode.
         .clipEdge(this.clipEdge)
         .style(this.chartStyle)
+        .margin(this.margin)
         .controlLabels({
           stacked: "堆叠",
           stream: "流",
@@ -50,7 +61,6 @@ export default {
 
       //We want to show shapes other than circles.
       // chart.scatter.onlyCircles(false)
-
       this.redraw(chart);
       this.chartRef = chart;
 
