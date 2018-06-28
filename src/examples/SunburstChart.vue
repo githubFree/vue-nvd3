@@ -3,17 +3,27 @@
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
       <vn-sunburst :model="traffics"
-      :margin="{left: 70, bottom: 30, right: 0}"
-      mode="size">
-    </vn-sunburst>
+        :margin="{left: 70, bottom: 30, right: 0}"
+        mode="size"
+        :elementClick="elementClick"
+        :elementMousemove="elementMousemove">
+      </vn-sunburst>
     </div>
 
     <div class="uk-width-medium-1-1">
-      <ul class="uk-tab" data-uk-tab="{connect:'#tab-content'}">
-        <li class="uk-active" aria-expanded="true"><a href="#">HTML</a></li>
-        <li aria-expanded="false" class=""><a href="#">Data</a></li>
+      <ul class="uk-tab"
+        data-uk-tab="{connect:'#tab-content'}">
+        <li class="uk-active"
+          aria-expanded="true">
+          <a href="#">HTML</a>
+        </li>
+        <li aria-expanded="false"
+          class="">
+          <a href="#">Data</a>
+        </li>
       </ul>
-      <ul id="tab-content" class="uk-switcher uk-margin">
+      <ul id="tab-content"
+        class="uk-switcher uk-margin">
         <li class="uk-active">
           <pre><code>&lt;vn-sunburst :model="data"
       :margin="{left: 70, bottom: 30, right: 0}"&gt;
@@ -462,6 +472,12 @@ export default {
   methods: {
     formatDate (d) {
       return d3.time.format('%x')(new Date(d))
+    },
+    elementMousemove (event) {
+      console.log(event);
+    },
+    elementClick (event) {
+      console.log(event);
     }
   }
 }
