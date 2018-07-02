@@ -9,10 +9,11 @@ export default {
     colors: { type: Array, default: () => ["#82DFD6", "#ddd"] },
     width: { type: Number, default: 300 },
     height: { type: Number, default: 300 },
+    modeType: { type: String, default: "count" },
     margin: {
       type: Object,
       default: () => {
-        return { left: 50, bottom: 30, right: 0 };
+        return { top: 0, left: 50, bottom: 30, right: 0 };
       }
     },
     elementClick: {
@@ -29,10 +30,12 @@ export default {
       const chart = nv.models
         .sunburstChart()
         .margin(this.margin)
+        .mode(this.modeType)
         .color(this.colors);
 
       this.redraw(chart);
       this.chartRef = chart;
+
       nv.utils.windowResize(chart.update);
       chart.sunburst.dispatch.on("elementMousemove", event => {
         this.elementMousemove(event);
@@ -40,10 +43,10 @@ export default {
       chart.sunburst.dispatch.on("elementClick", event => {
         this.elementClick(event);
       });
+
       if (this.width) {
         chart.width(this.width);
       }
-
       if (this.height) {
         chart.height(this.height);
       }
