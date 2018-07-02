@@ -7,6 +7,8 @@ export default {
   mixins: [BaseChartMixin],
   props: {
     colors: { type: Array, default: () => ["#82DFD6", "#ddd"] },
+    width: { type: Number, default: 300 },
+    height: { type: Number, default: 300 },
     margin: {
       type: Object,
       default: () => {
@@ -38,6 +40,13 @@ export default {
       chart.sunburst.dispatch.on("elementClick", event => {
         this.elementClick(event);
       });
+      if (this.width) {
+        chart.width(this.width);
+      }
+
+      if (this.height) {
+        chart.height(this.height);
+      }
       return chart;
     });
   }
