@@ -10,6 +10,7 @@ export default {
     width: { type: String, default: "300" },
     height: { type: String, default: "300" },
     modeType: { type: String, default: "count" },
+    tooltipFn: { type: Function, default: () => {} },
     margin: {
       type: Object,
       default: () => {
@@ -44,6 +45,10 @@ export default {
       });
       chart.sunburst.dispatch.on("elementClick", event => {
         this.elementClick(event);
+      });
+      let self = this;
+      chart.tooltip.valueFormatter(d => {
+        return self.tooltipFn(d) || d;
       });
       this.redraw(chart);
       this.chartRef = chart;

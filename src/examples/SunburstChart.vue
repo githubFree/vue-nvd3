@@ -2,13 +2,15 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-sunburst :model="trafficDataNull"
+      <vn-sunburst :model="traffics"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
+        :tooltipFn="tooltipFn"
         :height="'500'"
         modeType="value"
         width="100%"
+        :colors="colors"
         :elementMousemove="elementMousemove">
       </vn-sunburst>
     </div>
@@ -423,7 +425,11 @@ export default {
             { "name": "Visualization", "value": 16540 }
           ]
         }
-      ]
+      ],
+      colors: ['#36AAAA', '#58C7F1', '#F8A93C', '#F57844', '#6495ed',
+        '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
+        '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
+        '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0']
     }
   },
   computed: {
@@ -468,6 +474,7 @@ export default {
       // return [root]
       let data = [{
         "name": "flare",
+        "total": 991329,
         "children": [
           {
             "name": "analytics",
@@ -864,6 +871,10 @@ export default {
     },
     elementClick (event) {
       console.log(event);
+    },
+    tooltipFn (d) {
+      let total = this.traffics[0].total;
+      return (d / total * 100).toFixed(2) + '%';
     }
   }
 }

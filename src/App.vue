@@ -35,7 +35,7 @@
             <div class="uk-width-medium-1-4">
               <ul class="uk-tab uk-tab-left uk-width-medium-1-1"
                 data-uk-tab="">
-                <li class="uk-active">
+                <li>
                   <router-link :to="{name:'GroupBarChart'}">Group Bar chart</router-link>
                 </li>
                 <li>
@@ -59,7 +59,7 @@
                 <li>
                   <router-link :to="{name:'StackedAreaChart'}">Stacked area chart</router-link>
                 </li>
-                <li>
+                <li class="uk-active">
                   <router-link :to="{name:'SunburstChart'}">Sunburst area chart</router-link>
                 </li>
               </ul>
@@ -81,7 +81,7 @@ import 'uikit'
 export default {
   name: 'app',
   mounted () {
-    this.$router.push({ name: 'GroupBarChart' })
+    this.$router.push({ name: 'SunburstChart' })
   }
 }
 </script>
