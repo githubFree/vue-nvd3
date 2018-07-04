@@ -18,7 +18,10 @@ export default {
   methods: {
     redraw(chart) {
       d3.select(this.$refs.chart)
-        .style("height", this.height)
+        .style({
+          width: this.width,
+          height: this.height
+        })
         .datum(this.model)
         .transition()
         .duration(500)

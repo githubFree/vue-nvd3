@@ -6,7 +6,8 @@
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
-        :height="290"
+        :width="500"
+        :height="500"
         modeType="value"
         :elementMousemove="elementMousemove">
       </vn-sunburst>
@@ -849,7 +850,11 @@ export default {
     }
   },
   created: function () {
-    this.trafficDataNull = this.trafficData;
+    let self = this;
+    setTimeout(function () {
+      console.log(1233);
+      self.trafficDataNull = self.trafficData;
+    }, 2000);
   },
   methods: {
     formatDate (d) {
