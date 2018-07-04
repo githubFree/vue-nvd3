@@ -33,23 +33,21 @@ export default {
         .mode(this.modeType)
         .color(this.colors);
 
-      this.redraw(chart);
-      this.chartRef = chart;
-
-      nv.utils.windowResize(chart.update);
-      chart.sunburst.dispatch.on("elementMousemove", event => {
-        this.elementMousemove(event);
-      });
-      chart.sunburst.dispatch.on("elementClick", event => {
-        this.elementClick(event);
-      });
-
       if (this.width) {
         chart.width(this.width);
       }
       if (this.height) {
         chart.height(this.height);
       }
+      chart.sunburst.dispatch.on("elementMousemove", event => {
+        this.elementMousemove(event);
+      });
+      chart.sunburst.dispatch.on("elementClick", event => {
+        this.elementClick(event);
+      });
+      this.redraw(chart);
+      this.chartRef = chart;
+      nv.utils.windowResize(chart.update);
       return chart;
     });
   }

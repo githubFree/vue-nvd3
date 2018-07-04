@@ -2,11 +2,11 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-sunburst :model="traffics"
+      <vn-sunburst :model="trafficDataNull"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
-        :height="500"
+        :height="290"
         modeType="value"
         :elementMousemove="elementMousemove">
       </vn-sunburst>
@@ -45,8 +45,384 @@ import d3 from 'd3'
 export default {
   data () {
     return {
-      // trafficData: [{ "key": "a20180301ydy_index", "pv": 23083, "uv": 22010 }, { "key": "a20180301ydy_index", "pv": 23083, "uv": 22010 }, { "key": "a20180301ydy_index_dddsdf", "pv": 23083, "uv": 22010 }]
-      trafficData: [{ "key": "a20180301ydy_index", "pv": 23083, "uv": 22010 }, { "key": "a20180301ydym_index", "pv": 5134, "uv": 5124 }, { "key": "a20180301ydy_index_newsdetail", "pv": 4922, "uv": 4850 }, { "key": "index", "pv": 2449, "uv": 2279 }, { "key": "a20180301ydy_a20180301ydy_index", "pv": 2344, "uv": 2319 }, { "key": "a20180301ydy_index_characterlist", "pv": 2187, "uv": 2159 }, { "key": "a20180301ydy_index_newslist", "pv": 2043, "uv": 2015 }, { "key": "a20180301ydy_index_newsdetail_newsdetail", "pv": 1906, "uv": 1894 }, { "key": "a20180301ydy_index_soldierlist", "pv": 1200, "uv": 1196 }, { "key": "a20180301ydy_index_characterlist_characterdetail", "pv": 1141, "uv": 1119 }, { "key": "a20171130yuyue_index", "pv": 1023, "uv": 961 }, { "key": "newsdetail", "pv": 968, "uv": 924 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail", "pv": 864, "uv": 863 }, { "key": "a20180301ydy_index_strategy", "pv": 858, "uv": 852 }, { "key": "a20180301ydy_index_newslist_newslist", "pv": 813, "uv": 804 }, { "key": "a20180301ydy_index_index", "pv": 730, "uv": 721 }, { "key": "a20180301ydy_index_newslist_newsdetail", "pv": 727, "uv": 723 }, { "key": "a20180301ydym_a20180301ydym_index", "pv": 700, "uv": 700 }, { "key": "a20171130yuyue_a20171130yuyue_index", "pv": 605, "uv": 596 }, { "key": "a20180301ydy_index_a20180301ydy_index", "pv": 550, "uv": 542 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist", "pv": 513, "uv": 503 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index", "pv": 468, "uv": 463 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail", "pv": 463, "uv": 463 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 460, "uv": 459 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index", "pv": 455, "uv": 452 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_characterdetail", "pv": 422, "uv": 414 }, { "key": "a20180301ydy_index_newslist_newslist_newslist", "pv": 377, "uv": 373 }, { "key": "a20180301ydy_index_anchor", "pv": 318, "uv": 314 }, { "key": "a20180301ydy_index_strategy_strategy", "pv": 308, "uv": 305 }, { "key": "a20180301ydy_index_strategy_newsdetail", "pv": 296, "uv": 295 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_characterdetail_characterlist", "pv": 286, "uv": 281 }, { "key": "a20180301ydy_index_newslist_newsdetail_newsdetail", "pv": 279, "uv": 279 }, { "key": "index_index", "pv": 271, "uv": 264 }, { "key": "a20180301ydy_index_newsdetail_newslist", "pv": 268, "uv": 268 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newsdetail", "pv": 267, "uv": 267 }, { "key": "a20180301ydy_index_newsdetail_index", "pv": 261, "uv": 258 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index", "pv": 261, "uv": 261 }, { "key": "a20171130yuyue_index_newsdetail", "pv": 254, "uv": 251 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 245, "uv": 245 }, { "key": "a20180301ydy_index_soldierlist_newsdetail", "pv": 237, "uv": 236 }, { "key": "index_newsdetail", "pv": 233, "uv": 229 }, { "key": "a20180301ydy_a20180301ydy_index_newslist", "pv": 227, "uv": 227 }, { "key": "a20180301ydym_a20180301ydym_a20180301ydym_index", "pv": 212, "uv": 212 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_newsdetail", "pv": 184, "uv": 184 }, { "key": "a20171130yuyue_a20171130yuyue_index_newsdetail", "pv": 184, "uv": 183 }, { "key": "a20180301ydy_index_soldierlist_soldierlist", "pv": 182, "uv": 182 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist", "pv": 179, "uv": 179 }, { "key": "a20180301ydy_index_newsdetail_characterlist", "pv": 179, "uv": 179 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_newslist", "pv": 176, "uv": 176 }, { "key": "characterdetail", "pv": 165, "uv": 158 }, { "key": "a20180301ydy_index_newslist_newslist_newsdetail", "pv": 158, "uv": 158 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail", "pv": 152, "uv": 152 }, { "key": "newsdetail_newsdetail", "pv": 151, "uv": 149 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_newsdetail", "pv": 146, "uv": 146 }, { "key": "a20180301ydy_index_characterlist_index", "pv": 145, "uv": 145 }, { "key": "a20180301ydy_index_newsdetail_strategy", "pv": 143, "uv": 143 }, { "key": "a20180301ydy_index_newslist_newsdetail_newsdetail_newsdetail", "pv": 142, "uv": 142 }, { "key": "a20180301ydy_index_a20171130yuyue_index", "pv": 142, "uv": 142 }, { "key": "a20180301ydy_index_fictiondetail", "pv": 141, "uv": 141 }, { "key": "a20180301ydy_index_characterlist_soldierlist", "pv": 139, "uv": 139 }, { "key": "a20180301ydy_index_strategy_strategy_newsdetail", "pv": 137, "uv": 136 }, { "key": "a20180301ydym_index_a20180301ydym_index", "pv": 131, "uv": 131 }, { "key": "a20180301ydy_index_index_newsdetail", "pv": 131, "uv": 131 }, { "key": "a20180301ydy_a20180301ydy_index_index", "pv": 126, "uv": 125 }, { "key": "a20180301ydy_a20180301ydy_index_soldierlist", "pv": 120, "uv": 120 }, { "key": "a20180301ydy_index_newsdetail_soldierlist", "pv": 117, "uv": 117 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_index", "pv": 113, "uv": 113 }, { "key": "a20180301ydy_index_strategy_strategy_strategy", "pv": 112, "uv": 112 }, { "key": "a20171130yuyue_index_newsdetail_newsdetail", "pv": 112, "uv": 111 }, { "key": "index_characterlist", "pv": 111, "uv": 98 }, { "key": "a20180130zlbym_a20180130zlbym_index", "pv": 110, "uv": 109 }, { "key": "a20180301ydy_index_newslist_newsdetail_newslist", "pv": 110, "uv": 110 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newsdetail_newsdetail", "pv": 109, "uv": 109 }, { "key": "a20171130yuyue_index_characterlist", "pv": 109, "uv": 108 }, { "key": "a20180301ydy_index_colleagues", "pv": 108, "uv": 108 }, { "key": "a20180301ydy_index_newsdetail_newslist_newsdetail", "pv": 108, "uv": 108 }, { "key": "a20180301ydy_index_videosdetail", "pv": 107, "uv": 107 }, { "key": "a20180301ydy_index_characterlist_newsdetail", "pv": 104, "uv": 104 }, { "key": "a20180301ydy_index_characterlist_strategy", "pv": 102, "uv": 102 }, { "key": "a20180130zlbym_index", "pv": 100, "uv": 99 }, { "key": "a20180301ydy_index_soldierlist_newsdetail_newsdetail", "pv": 98, "uv": 98 }, { "key": "index_index_index", "pv": 96, "uv": 96 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_characterdetail", "pv": 96, "uv": 96 }, { "key": "a20180301ydy_index_a20180301ydy_index_newsdetail", "pv": 95, "uv": 95 }, { "key": "a20180301ydy_index_newsdetail_a20180301ydy_index", "pv": 94, "uv": 94 }, { "key": "a20180301ydy_index_newsdetail_characterlist_characterdetail", "pv": 93, "uv": 93 }, { "key": "a20180301ydym_a20180301ydym_a20180301ydym_a20180301ydym_index", "pv": 92, "uv": 92 }, { "key": "a20180301ydy_index_strategy_newsdetail_newsdetail", "pv": 92, "uv": 92 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newslist", "pv": 90, "uv": 90 }, { "key": "a20180301ydy_index_newsdetail_newslist_newslist", "pv": 89, "uv": 89 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_newsdetail", "pv": 88, "uv": 88 }, { "key": "a20180301ydy_index_a20171130yuyue_newsdetail", "pv": 87, "uv": 87 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_index", "pv": 84, "uv": 84 }, { "key": "a20171130yuyue_a20171130yuyue_index_newsdetail_newsdetail", "pv": 82, "uv": 82 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_newsdetail", "pv": 81, "uv": 81 }, { "key": "a20180301ydy_index_newslist_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 80, "uv": 80 }, { "key": "a20180301ydy_index_soldierlist_characterlist", "pv": 80, "uv": 80 }, { "key": "a20180301ydy_a20180301ydy_index_a20180301ydy_index", "pv": 79, "uv": 79 }, { "key": "a20180301ydy_index_index_index", "pv": 79, "uv": 78 }, { "key": "a20171130yuyue_index_newslist", "pv": 78, "uv": 76 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_newsdetail_newsdetail", "pv": 78, "uv": 78 }, { "key": "a20180301ydy_index_characterlist_characterlist", "pv": 77, "uv": 77 }, { "key": "index_newslist", "pv": 76, "uv": 75 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_newsdetail", "pv": 76, "uv": 76 }, { "key": "index_newsdetail_newsdetail", "pv": 76, "uv": 76 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_a20171130yuyue_index", "pv": 76, "uv": 76 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newslist", "pv": 75, "uv": 74 }, { "key": "a20180301ydy_index_strategy_newsdetail_strategy", "pv": 74, "uv": 74 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newsdetail", "pv": 74, "uv": 74 }, { "key": "a20180301ydy_index_a20180301ydy_a20180301ydy_index", "pv": 72, "uv": 72 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_strategy", "pv": 71, "uv": 71 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_a20171130yuyue_newsdetail", "pv": 69, "uv": 68 }, { "key": "index_characterlist_characterdetail", "pv": 68, "uv": 56 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_characterlist", "pv": 68, "uv": 68 }, { "key": "a20180301ydy_index_anchor_anchorroom", "pv": 67, "uv": 67 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_newslist_newslist", "pv": 66, "uv": 66 }, { "key": "a20180301ydy_a20180301ydy_index_strategy", "pv": 66, "uv": 66 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_newsdetail", "pv": 66, "uv": 66 }, { "key": "a20171130yuyue_index_characterlist_characterdetail", "pv": 66, "uv": 66 }, { "key": "a20171130yuyue_index_soldierlist", "pv": 63, "uv": 63 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_newsdetail_newsdetail", "pv": 63, "uv": 63 }, { "key": "a20180301ydy_index_newsdetail_strategy_newsdetail", "pv": 62, "uv": 62 }, { "key": "index_a20171130yuyue_a20171130yuyue_index", "pv": 62, "uv": 62 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_a20171130yuyue_index", "pv": 61, "uv": 61 }, { "key": "a20180301ydy_index_newslist_index", "pv": 60, "uv": 60 }, { "key": "characterlist", "pv": 60, "uv": 54 }, { "key": "a20171130yuyue_index_newsdetail_newsdetail_newsdetail", "pv": 59, "uv": 59 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_newslist", "pv": 58, "uv": 58 }, { "key": "a20180301ydy_index_newslist_newslist_index", "pv": 56, "uv": 56 }, { "key": "a20180301ydy_index_index_characterlist", "pv": 56, "uv": 56 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_index", "pv": 55, "uv": 55 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newsdetail_newsdetail_newsdetail", "pv": 55, "uv": 55 }, { "key": "a20180301ydy_index_index_newsdetail_newsdetail", "pv": 54, "uv": 54 }, { "key": "a20180301ydy_index_characterlist_characterdetail_index", "pv": 54, "uv": 54 }, { "key": "a20180301ydym_index_index", "pv": 53, "uv": 53 }, { "key": "a20180301ydy_index_newslist_newsdetail_newslist_newslist", "pv": 52, "uv": 52 }, { "key": "a20180301ydy_index_characterlist_newslist", "pv": 51, "uv": 51 }, { "key": "a20180301ydy_index_a20180301ydy_newsdetail", "pv": 50, "uv": 50 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newslist_newsdetail", "pv": 50, "uv": 50 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_a20171130yuyue_index", "pv": 49, "uv": 49 }, { "key": "a20180301ydy_index_soldierlist_newsdetail_newsdetail_newsdetail", "pv": 49, "uv": 49 }, { "key": "a20171130yuyue_a20171130yuyue_index_characterlist", "pv": 49, "uv": 49 }, { "key": "index_soldierlist", "pv": 49, "uv": 49 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterdetail", "pv": 48, "uv": 47 }, { "key": "a20180301ydy_index_newsdetail_newslist_newsdetail_newsdetail", "pv": 48, "uv": 48 }, { "key": "a20180301ydy_index_a20180301ydy_index_newslist", "pv": 48, "uv": 48 }, { "key": "a20180301ydy_index_strategy_strategy_strategy_strategy", "pv": 48, "uv": 48 }, { "key": "a20180301ydy_index_newslist_newslist_newsdetail_newsdetail", "pv": 47, "uv": 47 }, { "key": "a20180301ydy_index_soldierlist_index", "pv": 47, "uv": 46 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail_soldierdetail", "pv": 45, "uv": 45 }, { "key": "a20180301ydy_index_newsdetail_index_newsdetail", "pv": 45, "uv": 45 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 44, "uv": 44 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_characterdetail_characterlist", "pv": 44, "uv": 44 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_a20180301ydy_index", "pv": 44, "uv": 44 }, { "key": "a20180301ydy_index_newslist_newsdetail_index", "pv": 44, "uv": 44 }, { "key": "a20180301ydy_index_index_newslist", "pv": 43, "uv": 43 }, { "key": "newsdetail_newsdetail_newsdetail", "pv": 43, "uv": 42 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_strategy", "pv": 43, "uv": 43 }, { "key": "a20180301ydy_index_colleagues_fictiondetail", "pv": 43, "uv": 43 }, { "key": "a20180301ydy_index_characterlist_characterdetail_soldierlist", "pv": 43, "uv": 43 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_newslist", "pv": 43, "uv": 43 }, { "key": "a20171130yuyue_index_index", "pv": 43, "uv": 39 }, { "key": "newsdetail_index", "pv": 42, "uv": 39 }, { "key": "a20180301ydy_index_strategy_strategy_strategy_newsdetail", "pv": 42, "uv": 42 }, { "key": "a20180301ydy_index_newsdetail_strategy_strategy", "pv": 42, "uv": 42 }, { "key": "a20180301ydy_index_fictiondetail_fictiondetail", "pv": 42, "uv": 42 }, { "key": "a20180301ydy_index_characterlist_strategy_newsdetail", "pv": 42, "uv": 42 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_characterlist", "pv": 41, "uv": 41 }, { "key": "a20180301ydy_index_strategy_newsdetail_strategy_newsdetail", "pv": 41, "uv": 41 }, { "key": "index_a20180301ydy_index", "pv": 41, "uv": 40 }, { "key": "a20171130yuyue_a20171130yuyue_index_newslist", "pv": 41, "uv": 41 }, { "key": "a20171130yuyue_index_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 41, "uv": 41 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_strategy", "pv": 40, "uv": 40 }, { "key": "a20180301ydy_index_a20171130yuyue_newslist", "pv": 40, "uv": 40 }, { "key": "a20180301ydy_index_strategy_strategy_newsdetail_newsdetail", "pv": 40, "uv": 40 }, { "key": "a20180301ydym_a20180301ydym_a20180301ydym_a20180301ydym_a20180301ydym_index", "pv": 40, "uv": 40 }, { "key": "a20180301ydy_index_newsdetail_newslist_newslist_newslist", "pv": 39, "uv": 39 }, { "key": "index_characterlist_characterdetail_characterlist", "pv": 39, "uv": 30 }, { "key": "a20180301ydy_index_soldierlist_characterlist_characterdetail", "pv": 39, "uv": 39 }, { "key": "a20171130yuyue_index_a20171130yuyue_index", "pv": 39, "uv": 39 }, { "key": "a20180301ydy_index_characterlist_strategy_strategy", "pv": 38, "uv": 38 }, { "key": "a20180301ydy_index_a20180301ydy_index_characterlist", "pv": 38, "uv": 38 }, { "key": "a20180301ydy_index_characterlist_newsdetail_newsdetail", "pv": 37, "uv": 37 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail_newsdetail", "pv": 37, "uv": 37 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newslist_newslist", "pv": 37, "uv": 37 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_a20180301ydy_index", "pv": 37, "uv": 36 }, { "key": "index_newsdetail_newsdetail_newsdetail", "pv": 37, "uv": 37 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_newsdetail_newsdetail", "pv": 37, "uv": 37 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_characterlist_characterdetail", "pv": 36, "uv": 36 }, { "key": "newslist", "pv": 36, "uv": 33 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_a20171130yuyue_a20171130yuyue_index", "pv": 36, "uv": 36 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_soldierlist", "pv": 36, "uv": 36 }, { "key": "a20180301ydy_index_strategy_newsdetail_newsdetail_newsdetail", "pv": 36, "uv": 36 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_newslist_newsdetail", "pv": 35, "uv": 35 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_newsdetail_newsdetail", "pv": 35, "uv": 35 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_characterdetail_newsdetail", "pv": 35, "uv": 35 }, { "key": "a20180301ydy_index_characterlist_soldierlist_soldierdetail", "pv": 35, "uv": 35 }, { "key": "a20180301ydy_index_a20171130yuyue_index_newsdetail", "pv": 35, "uv": 35 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_characterdetail_characterlist_characterdetail", "pv": 34, "uv": 34 }, { "key": "a20180130zlbym_a20180301ydy_index", "pv": 34, "uv": 32 }, { "key": "index_characterlist_characterdetail_characterlist_characterdetail", "pv": 34, "uv": 26 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_index", "pv": 34, "uv": 34 }, { "key": "a20171130yuyue_index_newslist_newsdetail", "pv": 34, "uv": 34 }, { "key": "a20180301ydy_index_a20171130yuyue_characterlist", "pv": 34, "uv": 34 }, { "key": "characterdetail_characterlist", "pv": 34, "uv": 34 }, { "key": "a20171130yuyue_a20171130yuyue_index_soldierlist", "pv": 34, "uv": 34 }, { "key": "a20180301ydy_index_a20180301ydy_index_a20180301ydy_index", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_characterlist", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newsdetail_characterlist", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_index_newslist_newsdetail_newslist_newsdetail", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_index_soldierlist_newslist", "pv": 33, "uv": 33 }, { "key": "a20180301ydym_index_a20180301ydym_a20180301ydym_index", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_index_characterlist_characterlist_characterdetail", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_newslist", "pv": 33, "uv": 33 }, { "key": "a20171130yuyue_a20171130yuyue_index_newsdetail_newsdetail_newsdetail", "pv": 33, "uv": 33 }, { "key": "a20180301ydy_a20180301ydy_index_a20171130yuyue_a20171130yuyue_index", "pv": 32, "uv": 32 }, { "key": "a20180301ydy_index_soldierlist_soldierlist_newsdetail", "pv": 32, "uv": 32 }, { "key": "a20180301ydy_index_soldierlist_strategy", "pv": 32, "uv": 32 }, { "key": "characterdetail_characterlist_characterdetail", "pv": 32, "uv": 32 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newsdetail_newsdetail", "pv": 32, "uv": 32 }, { "key": "index_strategy", "pv": 32, "uv": 32 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_a20180301ydy_index", "pv": 32, "uv": 32 }, { "key": "a20180130zlbym_a20180130zlbym_index_index", "pv": 31, "uv": 31 }, { "key": "a20180301ydy_index_a20171130yuyue_newsdetail_newsdetail", "pv": 31, "uv": 31 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newsdetail_characterlist_characterdetail", "pv": 31, "uv": 31 }, { "key": "a20180301ydy_index_newslist_characterlist", "pv": 31, "uv": 31 }, { "key": "a20180301ydy_index_characterlist_anchor", "pv": 30, "uv": 30 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail_soldierdetail_soldierdetail", "pv": 30, "uv": 30 }, { "key": "a20180301ydy_index_strategy_characterlist", "pv": 29, "uv": 29 }, { "key": "a20180301ydy_index_newslist_newslist_newsdetail_newslist", "pv": 29, "uv": 29 }, { "key": "a20180301ydy_index_newsdetail_characterlist_characterdetail_characterlist", "pv": 29, "uv": 29 }, { "key": "a20180301ydy_index_a20171130yuyue_a20180301ydy_index", "pv": 29, "uv": 29 }, { "key": "characterdetail_newsdetail", "pv": 29, "uv": 29 }, { "key": "characterlist_characterdetail", "pv": 29, "uv": 28 }, { "key": "a20171130yuyue_a20171130yuyue_a20180301ydy_index", "pv": 28, "uv": 28 }, { "key": "a20171130yuyue_index_characterlist_characterdetail_characterlist", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_a20180301ydy_index_strategy_newsdetail", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_a20180301ydy_index_a20180301ydy_a20180301ydy_index", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_index_newslist_newsdetail_newsdetail_newslist", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_index_a20180301ydy_index_newsdetail_newsdetail", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_index_characterlist_index_newsdetail", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_index_strategy_newsdetail_strategy_strategy", "pv": 28, "uv": 28 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_characterlist", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_strategy_strategy_newsdetail_strategy", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_newsdetail_anchor", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_colleagues_colleagues", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_strategy_newsdetail_strategy_newsdetail_strategy", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_anchor_index", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_newsdetail_newsdetail_newsdetail", "pv": 27, "uv": 27 }, { "key": "a20171130yuyue_a20180301ydy_index", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_strategy_newsdetail", "pv": 27, "uv": 27 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail_strategy", "pv": 27, "uv": 27 }, { "key": "index_news", "pv": 26, "uv": 22 }, { "key": "a20180301ydy_index_soldierlist_soldierlist_soldierlist", "pv": 26, "uv": 26 }, { "key": "a20180301ydy_index_newsdetail_a20180301ydy_index_newsdetail", "pv": 26, "uv": 26 }, { "key": "index_newslist_newsdetail", "pv": 26, "uv": 26 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_index", "pv": 26, "uv": 26 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail_soldierdetail_soldierdetail_soldierdetail", "pv": 26, "uv": 26 }, { "key": "a20180301ydy_index_newsdetail_characterlist_characterdetail_newsdetail", "pv": 26, "uv": 26 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_a20171130yuyue_newsdetail_newsdetail", "pv": 26, "uv": 26 }, { "key": "a20180301ydym_a20180301ydym_index_a20180301ydym_index", "pv": 26, "uv": 26 }, { "key": "a20171130yuyue_a20171130yuyue_index_characterlist_characterdetail", "pv": 26, "uv": 26 }, { "key": "a20171130yuyue_index_strategy", "pv": 25, "uv": 25 }, { "key": "index_index_index_index", "pv": 25, "uv": 25 }, { "key": "a20180301ydy_a20180301ydy_index_index_index", "pv": 25, "uv": 25 }, { "key": "a20180130zlbym_a20180130zlbym_a20180130zlbym_index", "pv": 25, "uv": 25 }, { "key": "a20180301ydy_index_characterlist_index_strategy", "pv": 25, "uv": 25 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_index", "pv": 25, "uv": 25 }, { "key": "a20180301ydy_index_index_index_index", "pv": 25, "uv": 25 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_strategy_strategy", "pv": 25, "uv": 25 }, { "key": "a20171130yuyue_index_characterlist_characterdetail_characterlist_characterdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_index", "pv": 24, "uv": 24 }, { "key": "characterdetail_characterlist_characterdetail_characterlist", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_newsdetail_characterlist_characterdetail_characterlist_characterdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_newsdetail_newsdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_newsdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_anchor_newslist", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterdetail_characterdetail", "pv": 24, "uv": 23 }, { "key": "a20180301ydy_index_a20180301ydy_index_characterlist_characterdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_newslist_a20180301ydy_index", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_a20180301ydy_newslist", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_a20180301ydy_index_anchor", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_strategy_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 24, "uv": 24 }, { "key": "a20171130yuyue_a20171130yuyue_index_index", "pv": 24, "uv": 22 }, { "key": "a20171130yuyue_a20171130yuyue_index_a20171130yuyue_index", "pv": 24, "uv": 24 }, { "key": "a20171130yuyue_a20171130yuyue_index_newslist_newsdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_characterdetail_characterdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydym_a20180301ydym_a20180301ydym_a20180301ydym_a20180301ydym_a20180301ydym_index", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_index", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_newslist_soldierlist", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_newsdetail_soldierlist_newsdetail", "pv": 24, "uv": 24 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newslist", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newslist_newsdetail_newsdetail", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_soldierlist_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 23, "uv": 23 }, { "key": "index_a20171130yuyue_index", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_anchor_newsdetail", "pv": 23, "uv": 23 }, { "key": "index_characterlist_characterdetail_characterlist_characterdetail_characterlist", "pv": 23, "uv": 19 }, { "key": "a20171130yuyue_index_a20171130yuyue_a20171130yuyue_index", "pv": 23, "uv": 23 }, { "key": "characterdetail_characterlist_characterdetail_characterlist_characterdetail", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_a20171130yuyue_newslist", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_a20180301ydy_index_soldierlist_newsdetail", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_newsdetail_newsdetail", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_index_characterlist_characterdetail", "pv": 23, "uv": 23 }, { "key": "a20180301ydy_index_strategy_strategy_strategy_strategy_newsdetail", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_a20180301ydy_index_index", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_characterlist_characterdetail_index_characterlist", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_newslist_newsdetail_newslist_newslist_newslist", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_a20171130yuyue_a20171130yuyue_newsdetail", "pv": 22, "uv": 22 }, { "key": "a20180130zlbym_a20180130zlbym_a20180130zlbym_a20180130zlbym_index", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_newslist_newslist_newslist_newslist_index", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_characterlist_index_characterlist", "pv": 22, "uv": 22 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterdetail_characterdetail_characterdetail", "pv": 21, "uv": 20 }, { "key": "a20180301ydy_index_index_a20180301ydy_index", "pv": 21, "uv": 21 }, { "key": "index_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 21, "uv": 21 }, { "key": "a20171130yuyue_index_newslist_newslist", "pv": 21, "uv": 21 }, { "key": "index_characterlist_characterdetail_characterlist_characterdetail_characterlist_characterdetail", "pv": 21, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_a20180301ydy_a20180301ydy_index", "pv": 21, "uv": 21 }, { "key": "a20180301ydy_index_anchor_characterlist", "pv": 21, "uv": 21 }, { "key": "a20180301ydy_index_a20180301ydy_a20180301ydy_a20180301ydy_index", "pv": 21, "uv": 21 }, { "key": "index_anchor", "pv": 21, "uv": 21 }, { "key": "a20180301ydy_index_newsdetail_index_a20171130yuyue_a20171130yuyue_newsdetail", "pv": 21, "uv": 20 }, { "key": "a20180301ydy_index_characterlist_newsdetail_newsdetail_newsdetail", "pv": 21, "uv": 21 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_characterlist", "pv": 21, "uv": 21 }, { "key": "a20180301ydy_index_newsdetail_newslist_newslist_newsdetail", "pv": 21, "uv": 21 }, { "key": "a20180301ydy_index_characterlist_a20180301ydy_index", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_index", "pv": 20, "uv": 20 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_newslist", "pv": 20, "uv": 20 }, { "key": "index_newslist_newslist", "pv": 20, "uv": 20 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_characterlist_characterdetail", "pv": 20, "uv": 20 }, { "key": "a20180301ydym_m201802_a20180301ydym_index", "pv": 20, "uv": 20 }, { "key": "index_newsdetail_index", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_index_soldierlist", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_newslist_newslist_newsdetail_newsdetail_newsdetail", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_strategy", "pv": 20, "uv": 20 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_a20171130yuyue_index_newsdetail", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_newslist_newslist", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newslist_newsdetail", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_characterdetail_newsdetail", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_a20180301ydy_characterlist", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_characterlist_strategy_strategy_newsdetail", "pv": 20, "uv": 20 }, { "key": "a20180301ydy_index_soldierlist_soldierlist_soldierdetail", "pv": 20, "uv": 20 }, { "key": "a20171130yuyue_index_newsdetail_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_soldierlist_videosdetail", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_videosdetail_newsdetail", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_newslist_newsdetail_a20180301ydy_index", "pv": 19, "uv": 19 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_newsdetail_newsdetail_newsdetail", "pv": 19, "uv": 19 }, { "key": "a20180130zlbym_a20180130zlbym_newsdetail", "pv": 19, "uv": 19 }, { "key": "newsdetail_newsdetail_newsdetail_newsdetail", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_strategy_index", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_strategy_strategy_strategy_strategy_strategy", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail_index", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_soldierlist", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_index", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_newsdetail_soldierlist_soldierdetail", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_newslist_newsdetail", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_strategy_newslist", "pv": 19, "uv": 19 }, { "key": "a20180301ydy_index_soldierlist_soldierlist_newsdetail_newsdetail", "pv": 19, "uv": 19 }, { "key": "a20180130zlbym_a20180130zlbym_a20180301ydy_index", "pv": 19, "uv": 19 }, { "key": "a20171130yuyue_a20171130yuyue_index_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_characterlist_characterdetail_index_characterlist_characterdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_index_strategy_strategy", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_index_newsdetail", "pv": 18, "uv": 18 }, { "key": "characterdetail_characterlist_characterdetail_characterlist_characterdetail_characterlist", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_characterlist_strategy_newsdetail_strategy", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_a20180301ydy_index", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_index_newslist_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newsdetail_newsdetail_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_characterlist", "pv": 18, "uv": 18 }, { "key": "index_a20180301ydy_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_newslist_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_characterlist", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail_characterlist", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_fictiondetail_colleagues", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_a20180301ydy_index_newslist_newslist", "pv": 18, "uv": 18 }, { "key": "a20180130zlbym_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_newslist_newsdetail_newsdetail_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_strategy_strategy", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_a20171130yuyue_newslist_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_soldierlist_soldierlist", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_newslist_newsdetail_newslist", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_newsdetail_strategy_newsdetail_newsdetail", "pv": 18, "uv": 18 }, { "key": "a20180301ydy_index_soldierlist_fictiondetail", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_soldierlist", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_strategy_strategy", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_newsdetail_strategy_strategy_strategy", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_newslist", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_a20180301ydy_index", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_newsdetail_strategy_newsdetail_strategy", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_a20180301ydy_index_strategy", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_newsdetail_strategy_strategy_newsdetail", "pv": 17, "uv": 17 }, { "key": "newsdetail_index_newsdetail", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_newsdetail_index_index", "pv": 17, "uv": 17 }, { "key": "characterdetail_index", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_strategy_newsdetail", "pv": 17, "uv": 17 }, { "key": "a20180130zlbym_index_index", "pv": 17, "uv": 17 }, { "key": "a20180301ydym_index_a20180301ydym_index_a20180301ydym_index", "pv": 17, "uv": 17 }, { "key": "a20180301ydy_index_colleagues_fictiondetail_fictiondetail", "pv": 16, "uv": 16 }, { "key": "a20171130yuyue_index_videosdetail", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_anchor", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_newsdetail_colleagues", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_a20180301ydy_index_fictiondetail", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_newslist_newsdetail", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_characterlist_characterdetail_characterlist", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_soldierlist_characterlist_characterdetail_characterlist", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_videolist", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_strategy_newsdetail_strategy_strategy_newsdetail", "pv": 16, "uv": 16 }, { "key": "videosdetail", "pv": 16, "uv": 15 }, { "key": "a20171130yuyue_index_characterlist_characterdetail_newsdetail", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_soldierlist", "pv": 16, "uv": 16 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail_index", "pv": 16, "uv": 16 }, { "key": "a20180301ydym_newsdetail", "pv": 16, "uv": 16 }, { "key": "index_news_news", "pv": 16, "uv": 15 }, { "key": "a20180301ydy_index_a20180301ydy_index_anchor", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_characterlist_index_strategy_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_newslist_anchor", "pv": 15, "uv": 15 }, { "key": "a20171130yuyue_index_characterlist_characterdetail_characterlist_characterdetail_characterlist", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_characterlist_newslist_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_videosdetail_videosdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_strategy_strategy_newsdetail_strategy_strategy", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_soldierlist", "pv": 15, "uv": 15 }, { "key": "index_colleagues", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_newslist_strategy", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_newslist_newsdetail_newslist_newslist_newsdetail", "pv": 15, "uv": 15 }, { "key": "characterdetail_characterlist_characterdetail_characterlist_characterdetail_characterlist_characterdetail", "pv": 15, "uv": 15 }, { "key": "fictiondetail", "pv": 15, "uv": 11 }, { "key": "index_a20171130yuyue_a20171130yuyue_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_a20180301ydy_characterlist_characterdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_a20171130yuyue_characterlist_characterdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_colleagues_colleagues_fictiondetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_newsdetail_characterlist_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_index_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20171130yuyue_a20171130yuyue_index_characterlist_characterdetail_characterlist", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_index_newsdetail_newsdetail_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_strategy_newsdetail", "pv": 15, "uv": 15 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_index_newsdetail_newsdetail_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_a20180301ydy_index_newsdetail_newsdetail_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_soldierlist", "pv": 14, "uv": 14 }, { "key": "a20171130yuyue_index_newslist_newsdetail_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_strategy_strategy_newsdetail_newsdetail_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_a20180301ydy_index_newsdetail_newsdetail_index", "pv": 14, "uv": 14 }, { "key": "a20171130yuyue_index_newsdetail_newslist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newslist_characterlist_characterdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_a20180301ydy_index_newslist_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_strategy_soldierlist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newsdetail_index_newslist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_a20180301ydy_index_newslist_newslist_newslist_newslist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_a20180301ydy_index_soldierlist_soldierlist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_characterlist_newslist_newslist", "pv": 14, "uv": 14 }, { "key": "a20171130yuyue_a20171130yuyue_index_characterlist_characterdetail_characterlist_characterdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_a20180301ydy_index_soldierlist_newsdetail_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_index", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_strategy_newsdetail_strategy", "pv": 14, "uv": 14 }, { "key": "a20171130yuyue_index_newsdetail_characterlist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_newslist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newsdetail_fictiondetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_soldierlist_anchor", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newslist_newsdetail_newsdetail_newslist_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_newslist_newslist_a20180301ydy_index", "pv": 14, "uv": 14 }, { "key": "newsdetail_newslist", "pv": 14, "uv": 14 }, { "key": "a20180301ydym_a20180301ydym_index_a20180301ydym_a20180301ydym_index", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_characterlist_soldierlist_newsdetail", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_anchor_anchor", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterdetail_characterlist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_characterlist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newslist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_characterlist_characterlist_characterdetail_characterlist", "pv": 14, "uv": 14 }, { "key": "a20180301ydy_index_soldierlist_soldierdetail_newsdetail_newsdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_characterlist_characterdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_characterlist_characterdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_a20180301ydy_index_soldierlist_soldierdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_index_characterlist_characterdetail_characterlist", "pv": 13, "uv": 13 }, { "key": "a20171130yuyue_a20171130yuyue_index_strategy", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_characterdetail_index", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newsdetail_newsdetail_newslist", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_soldierlist_soldierlist_characterlist", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_soldierlist_a20180301ydy_index", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_newslist_newsdetail_a20171130yuyue_a20171130yuyue_newslist", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_newsdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterlist_index", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_index_newslist", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_characterlist_characterlist_characterdetail_characterlist_characterdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_characterlist_soldierlist_soldierdetail_soldierdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_characterlist_characterdetail_newsdetail_newsdetail_characterlist", "pv": 13, "uv": 13 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_soldierlist", "pv": 13, "uv": 13 }, { "key": "a20180301ydym_index_a20180301ydym_a20180301ydym_a20180301ydym_index", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_a20180301ydy_newsdetail_newsdetail", "pv": 13, "uv": 13 }, { "key": "a20180301ydy_index_a20180301ydy_newslist_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20171130yuyue_a20171130yuyue_index_newsdetail_soldierlist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_newsdetail_characterlist_index", "pv": 12, "uv": 12 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_newslist_newsdetail", "pv": 12, "uv": 12 }, { "key": "index_index_index_index_index", "pv": 12, "uv": 12 }, { "key": "newsdetail_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 12, "uv": 12 }, { "key": "video", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20180301ydy_index_characterlist_characterdetail_characterlist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_a20171130yuyue_a20171130yuyue_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydym_a20180301ydym_a20180301ydym_index_a20180301ydym_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_a20180301ydy_index_index_newsdetail", "pv": 12, "uv": 12 }, { "key": "characterdetail_newsdetail_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_a20171130yuyue_index_characterlist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_newslist_newslist", "pv": 12, "uv": 12 }, { "key": "a20171130yuyue_index_newslist_newsdetail_newsdetail_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_a20180301ydy_a20180301ydy_a20180301ydy_index_newsdetail_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20171130yuyue_index_newslist_newslist_newslist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_a20180301ydy_index_characterlist_characterdetail_newsdetail_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_newslist_index_newslist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_strategy_newsdetail_newsdetail_strategy", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_soldierlist_characterlist_characterdetail_characterlist_characterdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_a20171130yuyue_a20171130yuyue_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_index_strategy", "pv": 12, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_newslist_newslist_newslist_newslist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_strategy_strategy_strategy", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_soldierlist_newslist_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_index_a20171130yuyue_a20171130yuyue_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_newslist_newslist_newsdetail_newslist_newslist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_characterlist_soldierlist_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_soldierlist_index_newsdetail", "pv": 12, "uv": 12 }, { "key": "index_characterlist_index", "pv": 12, "uv": 12 }, { "key": "strategy", "pv": 12, "uv": 11 }, { "key": "a20180301ydy_index_anchor_anchorroom_anchorroom", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20171130yuyue_index_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20171130yuyue_newsdetail_newsdetail_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_a20171130yuyue_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_characterlist_characterdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_a20180301ydy_index_soldierlist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_characterlist_colleagues", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_a20180301ydy_index_a20171130yuyue_a20171130yuyue_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_newslist_newslist_characterlist", "pv": 12, "uv": 12 }, { "key": "soldierlist", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_strategy_strategy_newsdetail_strategy_newsdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_strategy_strategy_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_soldierlist_colleagues", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_anchor_characterlist_characterdetail", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_strategy_newsdetail_index", "pv": 12, "uv": 12 }, { "key": "a20180301ydy_index_soldierlist_newslist_newslist", "pv": 12, "uv": 11 }, { "key": "a20180301ydy_a20180301ydy_index_a20171130yuyue_index", "pv": 12, "uv": 12 }, { "key": "index_video", "pv": 11, "uv": 10 }, { "key": "a20171128yyhw_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_strategy_newsdetail_soldierlist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_fictiondetail_colleagues_fictiondetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_a20171130yuyue_a20171130yuyue_index_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_index_index_index_index", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_a20180301ydy_a20180301ydy_index_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_strategy_newsdetail_characterlist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_index_characterlist_characterdetail_characterlist_characterdetail", "pv": 11, "uv": 11 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_a20180301ydy_index", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydym_a20180301ydym_m201802_a20180301ydym_index", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_soldierlist_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20171130yuyue_index_newsdetail_index", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_characterlist_characterdetail_soldierlist_soldierdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_strategy_newslist_newslist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_characterlist_characterdetail_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_a20180301ydy_index_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_anchor_soldierlist", "pv": 11, "uv": 11 }, { "key": "index_newsdetail_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_a20171130yuyue_index_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_a20180301ydy_index_strategy_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_a20180301ydy_index", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_a20171130yuyue_a20171130yuyue_index_anchor", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_characterlist_characterdetail_characterdetail_characterlist_characterdetail", "pv": 11, "uv": 11 }, { "key": "a20171130yuyue_a20171130yuyue_index_a20171130yuyue_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_characterlist_newsdetail_newsdetail_newsdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_soldierlist_soldierlist_strategy", "pv": 11, "uv": 11 }, { "key": "characterdetail_characterdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydym_a20180301ydym_index_index", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_index_newslist_newslist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_a20180301ydy_index_newslist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_a20180301jfdh_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_fictiondetail_fictiondetail_fictiondetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_characterlist_index_soldierlist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newsdetail_newsdetail_newslist_newslist", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_a20180301ydy_index_a20180301ydy_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_newslist_newsdetail_index_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20180301ydy_index_soldierlist_characterlist_characterdetail_newsdetail", "pv": 11, "uv": 11 }, { "key": "a20171130yuyue_a20171130yuyue_a20171130yuyue_index_strategy", "pv": 11, "uv": 11 }]
+      trafficDataNull: [],
+      trafficData: [
+        {
+          "name": "analytics",
+          "children": [
+            {
+              "name": "cluster",
+              "children": [
+                { "name": "AgglomerativeCluster", "value": 39138 },
+                { "name": "CommunityStructure", "value": 3812 },
+                { "name": "HierarchicalCluster", "value": 6714 },
+                { "name": "MergeEdge", "value": 743 }
+              ]
+            },
+            {
+              "name": "graph",
+              "children": [
+                { "name": "BetweennessCentrality", "value": 3534 },
+                { "name": "LinkDistance", "value": 5731 },
+                { "name": "MaxFlowMinCut", "value": 7840 },
+                { "name": "ShortestPaths", "value": 5914 },
+                { "name": "SpanningTree", "value": 3416 }
+              ]
+            },
+            {
+              "name": "optimization",
+              "children": [
+                { "name": "AspectRatioBanker", "value": 7074 }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "animate",
+          "children": [
+            { "name": "Easing", "value": 17010 },
+            { "name": "FunctionSequence", "value": 5842 },
+            {
+              "name": "interpolate",
+              "children": [
+                { "name": "ArrayInterpolator", "value": 1983 },
+                { "name": "ColorInterpolator", "value": 2047 },
+                { "name": "DateInterpolator", "value": 1375 },
+                { "name": "Interpolator", "value": 8746 },
+                { "name": "MatrixInterpolator", "value": 2202 },
+                { "name": "NumberInterpolator", "value": 1382 },
+                { "name": "ObjectInterpolator", "value": 1629 },
+                { "name": "PointInterpolator", "value": 1675 },
+                { "name": "RectangleInterpolator", "value": 2042 }
+              ]
+            },
+            { "name": "ISchedulable", "value": 1041 },
+            { "name": "Parallel", "value": 5176 },
+            { "name": "Pause", "value": 449 },
+            { "name": "Scheduler", "value": 5593 },
+            { "name": "Sequence", "value": 5534 },
+            { "name": "Transition", "value": 9201 },
+            { "name": "Transitioner", "value": 19975 },
+            { "name": "TransitionEvent", "value": 1116 },
+            { "name": "Tween", "value": 6006 }
+          ]
+        },
+        {
+          "name": "data",
+          "children": [
+            {
+              "name": "converters",
+              "children": [
+                { "name": "Converters", "value": 721 },
+                { "name": "DelimitedTextConverter", "value": 4294 },
+                { "name": "GraphMLConverter", "value": 9800 },
+                { "name": "IDataConverter", "value": 1314 },
+                { "name": "JSONConverter", "value": 2220 }
+              ]
+            },
+            { "name": "DataField", "value": 1759 },
+            { "name": "DataSchema", "value": 2165 },
+            { "name": "DataSet", "value": 586 },
+            { "name": "DataSource", "value": 3331 },
+            { "name": "DataTable", "value": 772 },
+            { "name": "DataUtil", "value": 3322 }
+          ]
+        },
+        {
+          "name": "display",
+          "children": [
+            { "name": "DirtySprite", "value": 8833 },
+            { "name": "LineSprite", "value": 1732 },
+            { "name": "RectSprite", "value": 3623 },
+            { "name": "TextSprite", "value": 10066 }
+          ]
+        },
+        {
+          "name": "flex",
+          "children": [
+            { "name": "FlareVis", "value": 4116 }
+          ]
+        },
+        {
+          "name": "physics",
+          "children": [
+            { "name": "DragForce", "value": 1082 },
+            { "name": "GravityForce", "value": 1336 },
+            { "name": "IForce", "value": 319 },
+            { "name": "NBodyForce", "value": 10498 },
+            { "name": "Particle", "value": 2822 },
+            { "name": "Simulation", "value": 9983 },
+            { "name": "Spring", "value": 2213 },
+            { "name": "SpringForce", "value": 1681 }
+          ]
+        },
+        {
+          "name": "query",
+          "children": [
+            { "name": "AggregateExpression", "value": 1616 },
+            { "name": "And", "value": 1027 },
+            { "name": "Arithmetic", "value": 3891 },
+            { "name": "Average", "value": 891 },
+            { "name": "BinaryExpression", "value": 2893 },
+            { "name": "Comparison", "value": 5103 },
+            { "name": "CompositeExpression", "value": 3677 },
+            { "name": "Count", "value": 781 },
+            { "name": "DateUtil", "value": 4141 },
+            { "name": "Distinct", "value": 933 },
+            { "name": "Expression", "value": 5130 },
+            { "name": "ExpressionIterator", "value": 3617 },
+            { "name": "Fn", "value": 3240 },
+            { "name": "If", "value": 2732 },
+            { "name": "IsA", "value": 2039 },
+            { "name": "Literal", "value": 1214 },
+            { "name": "Match", "value": 3748 },
+            { "name": "Maximum", "value": 843 },
+            {
+              "name": "methods",
+              "children": [
+                { "name": "add", "value": 593 },
+                { "name": "and", "value": 330 },
+                { "name": "average", "value": 287 },
+                { "name": "count", "value": 277 },
+                { "name": "distinct", "value": 292 },
+                { "name": "div", "value": 595 },
+                { "name": "eq", "value": 594 },
+                { "name": "fn", "value": 460 },
+                { "name": "gt", "value": 603 },
+                { "name": "gte", "value": 625 },
+                { "name": "iff", "value": 748 },
+                { "name": "isa", "value": 461 },
+                { "name": "lt", "value": 597 },
+                { "name": "lte", "value": 619 },
+                { "name": "max", "value": 283 },
+                { "name": "min", "value": 283 },
+                { "name": "mod", "value": 591 },
+                { "name": "mul", "value": 603 },
+                { "name": "neq", "value": 599 },
+                { "name": "not", "value": 386 },
+                { "name": "or", "value": 323 },
+                { "name": "orderby", "value": 307 },
+                { "name": "range", "value": 772 },
+                { "name": "select", "value": 296 },
+                { "name": "stddev", "value": 363 },
+                { "name": "sub", "value": 600 },
+                { "name": "sum", "value": 280 },
+                { "name": "update", "value": 307 },
+                { "name": "variance", "value": 335 },
+                { "name": "where", "value": 299 },
+                { "name": "xor", "value": 354 },
+                { "name": "_", "value": 264 }
+              ]
+            },
+            { "name": "Minimum", "value": 843 },
+            { "name": "Not", "value": 1554 },
+            { "name": "Or", "value": 970 },
+            { "name": "Query", "value": 13896 },
+            { "name": "Range", "value": 1594 },
+            { "name": "StringUtil", "value": 4130 },
+            { "name": "Sum", "value": 791 },
+            { "name": "Variable", "value": 1124 },
+            { "name": "Variance", "value": 1876 },
+            { "name": "Xor", "value": 1101 }
+          ]
+        },
+        {
+          "name": "scale",
+          "children": [
+            { "name": "IScaleMap", "value": 2105 },
+            { "name": "LinearScale", "value": 1316 },
+            { "name": "LogScale", "value": 3151 },
+            { "name": "OrdinalScale", "value": 3770 },
+            { "name": "QuantileScale", "value": 2435 },
+            { "name": "QuantitativeScale", "value": 4839 },
+            { "name": "RootScale", "value": 1756 },
+            { "name": "Scale", "value": 4268 },
+            { "name": "ScaleType", "value": 1821 },
+            { "name": "TimeScale", "value": 5833 }
+          ]
+        },
+        {
+          "name": "util",
+          "children": [
+            { "name": "Arrays", "value": 8258 },
+            { "name": "Colors", "value": 10001 },
+            { "name": "Dates", "value": 8217 },
+            { "name": "Displays", "value": 12555 },
+            { "name": "Filter", "value": 2324 },
+            { "name": "Geometry", "value": 10993 },
+            {
+              "name": "heap",
+              "children": [
+                { "name": "FibonacciHeap", "value": 9354 },
+                { "name": "HeapNode", "value": 1233 }
+              ]
+            },
+            { "name": "IEvaluable", "value": 335 },
+            { "name": "IPredicate", "value": 383 },
+            { "name": "IValueProxy", "value": 874 },
+            {
+              "name": "math",
+              "children": [
+                { "name": "DenseMatrix", "value": 3165 },
+                { "name": "IMatrix", "value": 2815 },
+                { "name": "SparseMatrix", "value": 3366 }
+              ]
+            },
+            { "name": "Maths", "value": 17705 },
+            { "name": "Orientation", "value": 1486 },
+            {
+              "name": "palette",
+              "children": [
+                { "name": "ColorPalette", "value": 6367 },
+                { "name": "Palette", "value": 1229 },
+                { "name": "ShapePalette", "value": 2059 },
+                { "name": "SizePalette", "value": 2291 }
+              ]
+            },
+            { "name": "Property", "value": 5559 },
+            { "name": "Shapes", "value": 19118 },
+            { "name": "Sort", "value": 6887 },
+            { "name": "Stats", "value": 6557 },
+            { "name": "Strings", "value": 22026 }
+          ]
+        },
+        {
+          "name": "vis",
+          "children": [
+            {
+              "name": "axis",
+              "children": [
+                { "name": "Axes", "value": 1302 },
+                { "name": "Axis", "value": 24593 },
+                { "name": "AxisGridLine", "value": 652 },
+                { "name": "AxisLabel", "value": 636 },
+                { "name": "CartesianAxes", "value": 6703 }
+              ]
+            },
+            {
+              "name": "controls",
+              "children": [
+                { "name": "AnchorControl", "value": 2138 },
+                { "name": "ClickControl", "value": 3824 },
+                { "name": "Control", "value": 1353 },
+                { "name": "ControlList", "value": 4665 },
+                { "name": "DragControl", "value": 2649 },
+                { "name": "ExpandControl", "value": 2832 },
+                { "name": "HoverControl", "value": 4896 },
+                { "name": "IControl", "value": 763 },
+                { "name": "PanZoomControl", "value": 5222 },
+                { "name": "SelectionControl", "value": 7862 },
+                { "name": "TooltipControl", "value": 8435 }
+              ]
+            },
+            {
+              "name": "data",
+              "children": [
+                { "name": "Data", "value": 20544 },
+                { "name": "DataList", "value": 19788 },
+                { "name": "DataSprite", "value": 10349 },
+                { "name": "EdgeSprite", "value": 3301 },
+                { "name": "NodeSprite", "value": 19382 },
+                {
+                  "name": "render",
+                  "children": [
+                    { "name": "ArrowType", "value": 698 },
+                    { "name": "EdgeRenderer", "value": 5569 },
+                    { "name": "IRenderer", "value": 353 },
+                    { "name": "ShapeRenderer", "value": 2247 }
+                  ]
+                },
+                { "name": "ScaleBinding", "value": 11275 },
+                { "name": "Tree", "value": 7147 },
+                { "name": "TreeBuilder", "value": 9930 }
+              ]
+            },
+            {
+              "name": "events",
+              "children": [
+                { "name": "DataEvent", "value": 2313 },
+                { "name": "SelectionEvent", "value": 1880 },
+                { "name": "TooltipEvent", "value": 1701 },
+                { "name": "VisualizationEvent", "value": 1117 }
+              ]
+            },
+            {
+              "name": "legend",
+              "children": [
+                { "name": "Legend", "value": 20859 },
+                { "name": "LegendItem", "value": 4614 },
+                { "name": "LegendRange", "value": 10530 }
+              ]
+            },
+            {
+              "name": "operator",
+              "children": [
+                {
+                  "name": "distortion",
+                  "children": [
+                    { "name": "BifocalDistortion", "value": 4461 },
+                    { "name": "Distortion", "value": 6314 },
+                    { "name": "FisheyeDistortion", "value": 3444 }
+                  ]
+                },
+                {
+                  "name": "encoder",
+                  "children": [
+                    { "name": "ColorEncoder", "value": 3179 },
+                    { "name": "Encoder", "value": 4060 },
+                    { "name": "PropertyEncoder", "value": 4138 },
+                    { "name": "ShapeEncoder", "value": 1690 },
+                    { "name": "SizeEncoder", "value": 1830 }
+                  ]
+                },
+                {
+                  "name": "filter",
+                  "children": [
+                    { "name": "FisheyeTreeFilter", "value": 5219 },
+                    { "name": "GraphDistanceFilter", "value": 3165 },
+                    { "name": "VisibilityFilter", "value": 3509 }
+                  ]
+                },
+                { "name": "IOperator", "value": 1286 },
+                {
+                  "name": "label",
+                  "children": [
+                    { "name": "Labeler", "value": 9956 },
+                    { "name": "RadialLabeler", "value": 3899 },
+                    { "name": "StackedAreaLabeler", "value": 3202 }
+                  ]
+                },
+                {
+                  "name": "layout",
+                  "children": [
+                    { "name": "AxisLayout", "value": 6725 },
+                    { "name": "BundledEdgeRouter", "value": 3727 },
+                    { "name": "CircleLayout", "value": 9317 },
+                    { "name": "CirclePackingLayout", "value": 12003 },
+                    { "name": "DendrogramLayout", "value": 4853 },
+                    { "name": "ForceDirectedLayout", "value": 8411 },
+                    { "name": "IcicleTreeLayout", "value": 4864 },
+                    { "name": "IndentedTreeLayout", "value": 3174 },
+                    { "name": "Layout", "value": 7881 },
+                    { "name": "NodeLinkTreeLayout", "value": 12870 },
+                    { "name": "PieLayout", "value": 2728 },
+                    { "name": "RadialTreeLayout", "value": 12348 },
+                    { "name": "RandomLayout", "value": 870 },
+                    { "name": "StackedAreaLayout", "value": 9121 },
+                    { "name": "TreeMapLayout", "value": 9191 }
+                  ]
+                },
+                { "name": "Operator", "value": 2490 },
+                { "name": "OperatorList", "value": 5248 },
+                { "name": "OperatorSequence", "value": 4190 },
+                { "name": "OperatorSwitch", "value": 2581 },
+                { "name": "SortOperator", "value": 2023 }
+              ]
+            },
+            { "name": "Visualization", "value": 16540 }
+          ]
+        }
+      ]
     }
   },
   computed: {
@@ -89,7 +465,7 @@ export default {
       }
       // console.log(root)
       // return [root]
-      return [{
+      let data = [{
         "name": "flare",
         "children": [
           {
@@ -468,8 +844,12 @@ export default {
             ]
           }
         ]
-      }]
+      }];
+      return data;
     }
+  },
+  created: function () {
+    this.trafficDataNull = this.trafficData;
   },
   methods: {
     formatDate (d) {
