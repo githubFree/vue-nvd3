@@ -6,7 +6,7 @@
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
-        :tooltipFn="tooltipFn"
+        :tooltip="tooltip"
         :height="'500'"
         modeType="value"
         width="100%"
@@ -872,7 +872,7 @@ export default {
     elementClick (event) {
       console.log(event);
     },
-    tooltipFn (d) {
+    tooltip (d) {
       let total = this.traffics[0].total;
       return (d / total * 100).toFixed(2) + '%';
     }

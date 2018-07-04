@@ -10,7 +10,7 @@ export default {
     width: { type: String, default: "300" },
     height: { type: String, default: "300" },
     modeType: { type: String, default: "count" },
-    tooltipFn: { type: Function, default: () => {} },
+    tooltip: { type: Function, default: () => {} },
     margin: {
       type: Object,
       default: () => {
@@ -48,7 +48,7 @@ export default {
       });
       let self = this;
       chart.tooltip.valueFormatter(d => {
-        return self.tooltipFn(d) || d;
+        return self.tooltip(d) || d;
       });
       this.redraw(chart);
       this.chartRef = chart;
