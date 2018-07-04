@@ -5,6 +5,7 @@
       <vn-stacked-area :model="traffics"
         :x-format="formatDate"
         y-format=",f"
+        :showYAxis="false"
         chartStyle="expand">
       </vn-stacked-area>
     </div>

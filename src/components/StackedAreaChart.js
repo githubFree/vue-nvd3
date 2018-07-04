@@ -13,6 +13,7 @@ export default {
     showControls: { type: Boolean, default: true },
     clipEdge: { type: Boolean, default: true },
     chartStyle: { type: String, default: "stack" },
+    showYAxis: { type: Boolean, default: true },
     margin: {
       type: Object,
       default: () => {
@@ -62,6 +63,7 @@ export default {
         .style(this.chartStyle)
         .margin(this.margin)
         .color(this.colors)
+        .showYAxis(this.showYAxis)
         .controlLabels({
           stacked: "堆叠",
           stream: "流",
@@ -77,6 +79,7 @@ export default {
         }
       }
       if (this.yFormat) {
+        console.log(this.yFormat);
         if (typeof this.yFormat === "string") {
           chart.yAxis.tickFormat(d3.format(this.yFormat));
         } else {
