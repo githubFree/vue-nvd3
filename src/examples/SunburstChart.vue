@@ -6,9 +6,9 @@
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
-        :width="500"
-        :height="500"
+        :height="'500'"
         modeType="value"
+        width="100%"
         :elementMousemove="elementMousemove">
       </vn-sunburst>
     </div>
@@ -852,9 +852,8 @@ export default {
   created: function () {
     let self = this;
     setTimeout(function () {
-      console.log(1233);
       self.trafficDataNull = self.trafficData;
-    }, 2000);
+    }, 20);
   },
   methods: {
     formatDate (d) {

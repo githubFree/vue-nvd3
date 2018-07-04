@@ -7,8 +7,8 @@ export default {
   mixins: [BaseChartMixin],
   props: {
     colors: { type: Array, default: () => ["#82DFD6", "#ddd"] },
-    width: { type: Number, default: 300 },
-    height: { type: Number, default: 300 },
+    width: { type: String, default: "300" },
+    height: { type: String, default: "300" },
     modeType: { type: String, default: "count" },
     margin: {
       type: Object,
