@@ -14,7 +14,7 @@ export default {
     margin: {
       type: Object,
       default: () => {
-        return { top: 0, left: 50, bottom: 30, right: 0 };
+        return { top: 0, left: 0, bottom: 0, right: 0 };
       }
     },
     elementClick: {
