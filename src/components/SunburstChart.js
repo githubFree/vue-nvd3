@@ -40,10 +40,19 @@ export default {
       if (this.height) {
         chart.height(this.height);
       }
+      setTimeout(() => {
+        // let data = false;
+        console.log(this.model[0].children[9]);
+        this.elementClick({
+          data: this.model[0].children[9],
+          index: 83
+        });
+      }, 2000);
       chart.sunburst.dispatch.on("elementMousemove", event => {
         this.elementMousemove(event);
       });
       chart.sunburst.dispatch.on("elementClick", event => {
+        console.log(event);
         this.elementClick(event);
       });
       let self = this;
