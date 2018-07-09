@@ -11,6 +11,8 @@
         modeType="value"
         width="100%"
         :colors="colors"
+        :showLabels="true"
+        :labelFormat="labelFormat"
         :elementMousemove="elementMousemove">
       </vn-sunburst>
     </div>
@@ -863,6 +865,9 @@ export default {
     }, 20);
   },
   methods: {
+    labelFormat (d) {
+      return 111;
+    },
     formatDate (d) {
       return d3.time.format('%x')(new Date(d))
     },

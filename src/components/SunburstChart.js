@@ -11,6 +11,13 @@ export default {
     height: { type: String, default: "300" },
     modeType: { type: String, default: "count" },
     tooltip: { type: Function, default: () => {} },
+    labelFormat: {
+      type: Function,
+      default: d => {
+        return d.name;
+      }
+    },
+    showLabels: { type: Boolean, default: false },
     margin: {
       type: Object,
       default: () => {
@@ -32,6 +39,10 @@ export default {
         .sunburstChart()
         .margin(this.margin)
         .mode(this.modeType)
+        .showLabels(this.showLabels)
+        .labelFormat(d => {
+          return this.labelFormat(d);
+        })
         .color(this.colors);
 
       if (this.width) {
