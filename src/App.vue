@@ -59,8 +59,11 @@
                 <li>
                   <router-link :to="{name:'StackedAreaChart'}">Stacked area chart</router-link>
                 </li>
-                <li class="uk-active">
+                <li>
                   <router-link :to="{name:'SunburstChart'}">Sunburst area chart</router-link>
+                </li>
+                <li class="uk-active">
+                  <router-link :to="{name:'SunburstHollowChart'}">Sunburst Hollow Chart</router-link>
                 </li>
               </ul>
             </div>
@@ -81,7 +84,7 @@ import 'uikit'
 export default {
   name: 'app',
   mounted () {
-    this.$router.push({ name: 'SunburstChart' })
+    this.$router.push({ name: 'SunburstHollowChart' })
   }
 }
 </script>

@@ -15,6 +15,7 @@ import LineChartExample from "./examples/LineChart.vue";
 import PieChartExample from "./examples/PieChart.vue";
 import StackedAreaChartExample from "./examples/StackedAreaChart.vue";
 import SunburstChartExample from "./examples/SunburstChart.vue";
+import SunburstHollowChartExample from "./examples/SunburstHollowChart.vue";
 
 Vue.use(VueNVD3);
 Vue.use(VueRouter);
@@ -65,6 +66,11 @@ const router = new VueRouter({
       name: "SunburstChart",
       path: "/examples/sunburst-chart",
       component: SunburstChartExample
+    },
+    {
+      name: "SunburstHollowChart",
+      path: "/examples/SunburstHollowChart",
+      component: SunburstHollowChartExample
     }
   ]
 });

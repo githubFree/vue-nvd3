@@ -5,6 +5,7 @@ import HGBarChart from "./HBarChart";
 import BarChart from "./BarChart";
 import BubbleChart from "./BubbleChart";
 import SunburstChart from "./SunburstChart";
+import SunburstHollowChart from "./SunburstHollowChart";
 import StackedAreaChart from "./StackedAreaChart";
 import GroupedMultiBar from "./GroupedBarChart";
 import "nvd3/build/nv.d3.css";
@@ -17,6 +18,7 @@ export default (Vue, options) => {
   Vue.component("vn-bar", BarChart);
   Vue.component("vn-bubble", BubbleChart);
   Vue.component("vn-sunburst", SunburstChart);
+  Vue.component("vn-sunburst1", SunburstHollowChart);
   Vue.component("vn-stacked-area", StackedAreaChart);
   Vue.component("vn-group-bar", GroupedMultiBar);
 };
