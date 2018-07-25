@@ -18,7 +18,7 @@ export default (Vue, options) => {
   Vue.component("vn-bar", BarChart);
   Vue.component("vn-bubble", BubbleChart);
   Vue.component("vn-sunburst", SunburstChart);
-  Vue.component("vn-sunburst1", SunburstHollowChart);
+  Vue.component("vn-SunburstHollow", SunburstHollowChart);
   Vue.component("vn-stacked-area", StackedAreaChart);
   Vue.component("vn-group-bar", GroupedMultiBar);
 };

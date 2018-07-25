@@ -2,7 +2,7 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-sunburst1 :model="traffics"
+      <vn-SunburstHollow :model="traffics"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
@@ -14,7 +14,7 @@
         :showLabels="true"
         :labelFormat="labelFormat"
         :elementMousemove="elementMousemove">
-      </vn-sunburst1>
+      </vn-SunburstHollow>
     </div>
 
     <div class="uk-width-medium-1-1">
