@@ -47,8 +47,15 @@
 import d3 from 'd3'
 
 export default {
+  created: function () {
+    setTimeout(() => {
+      console.log('go');
+      this.kimi = 4000;
+    }, 2000)
+  },
   data () {
     return {
+      kimi: 5000,
       colors: ['#36AAAA', '#58C7F1', '#F8A93C', '#F57844', '#6495ed',
         '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
         '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
@@ -57,6 +64,7 @@ export default {
   },
   computed: {
     traffics () {
+      console.log('traffics');
       let data = {
         name: "root",
         children: [
@@ -64,8 +72,8 @@ export default {
             name: "v",
             children: [
               {
-                name: "v1",
-                size: 2000
+                name: "kimi",
+                size: this.kimi
               },
               {
                 name: "v2",
@@ -103,12 +111,9 @@ export default {
           }
         ]
       }
+
       return data;
     },
-  },
-  created: function () {
-    let self = this;
-
   },
   methods: {
     labelFormat (d) {
