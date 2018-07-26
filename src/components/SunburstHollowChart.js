@@ -48,6 +48,10 @@ export default {
     });
   },
   mounted() {
+    let _sunburstChart = document.getElementsByClassName("_sunburstChart")[0];
+    let sequence = _sunburstChart.getElementsByClassName("sequence")[0];
+    let explanation = _sunburstChart.getElementsByClassName("explanation")[0];
+
     //准备色库 S
     let colors = {};
     let setColors = obj => {
@@ -135,7 +139,6 @@ export default {
     }
 
     let updateBreadcrumbs = (nodeArray, percentageString) => {
-      let sequence = $("._sunburstChart .sequence");
       nodeArray.reverse();
       let html = "<ul>";
       for (var i = 0; i < nodeArray.length; i++) {
@@ -152,8 +155,8 @@ export default {
         html += "</li>";
       }
       html += '<li class="percentage">' + percentageString + "</li></ul>";
-      sequence.html(html);
-      sequence.css("opacity", "1");
+      sequence.innerHTML = html;
+      sequence.style.opacity = 1;
     };
 
     function mouseover(d) {
@@ -163,8 +166,10 @@ export default {
       if (percentage < 0.1) {
         percentageString = "< 0.1%";
       }
-      $("._sunburstChart .explanation .percentage").html(percentageString);
-      $("._sunburstChart .explanation").css("visibility", "visible");
+      explanation.getElementsByClassName(
+        "percentage"
+      )[0].innerHTML = percentageString;
+      explanation.style.visibility = "visible";
       var sequenceArray = getAncestors(d);
       updateBreadcrumbs(sequenceArray, percentageString);
       vis.selectAll("path").style("opacity", 0.3);
@@ -178,8 +183,7 @@ export default {
 
     function mouseleave(d) {
       //鼠标离开
-      let sequence = $("._sunburstChart .sequence");
-      sequence.css("opacity", "0");
+      sequence.style.opacity = 0;
       vis.selectAll("path").on("mouseover", null);
       vis
         .selectAll("path")
@@ -189,7 +193,7 @@ export default {
         .each("end", function() {
           d3.select(this).on("mouseover", mouseover);
         });
-      $("._sunburstChart .explanation").css("visibility", "hidden");
+      explanation.style.visibility = "hidden";
     }
 
     function getAncestors(node) {
