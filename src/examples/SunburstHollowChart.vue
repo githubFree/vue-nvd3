@@ -49,7 +49,6 @@ import d3 from 'd3'
 export default {
   created: function () {
     setTimeout(() => {
-      console.log('go');
       this.kimi = 4000;
     }, 2000)
   },
@@ -64,7 +63,6 @@ export default {
   },
   computed: {
     traffics () {
-      console.log('traffics');
       let data = {
         name: "root",
         children: [

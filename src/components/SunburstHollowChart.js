@@ -51,8 +51,14 @@ export default {
       this.init();
     }
   },
+  data() {
+    return {
+      mouseoverEvent: 0
+    };
+  },
   methods: {
     init() {
+      let self = this;
       let _sunburstChart = document.getElementsByClassName("_sunburstChart")[0];
       let sequence = _sunburstChart.getElementsByClassName("sequence")[0];
       let explanation = _sunburstChart.getElementsByClassName("explanation")[0];
@@ -136,10 +142,8 @@ export default {
             return colors[d.name];
           })
           .style("opacity", 0.7)
-          .on("mouseover", mouseover);
-
-        d3.select("#container").on("mouseleave", mouseleave);
-
+          .on("mouseover", mouseover)
+          .on("mouseleave", mouseleave);
         totalSize = path.node().__data__.value;
       }
 
@@ -188,16 +192,7 @@ export default {
 
       function mouseleave(d) {
         //鼠标离开
-        sequence.style.opacity = 0;
-        vis.selectAll("path").on("mouseover", null);
-        vis
-          .selectAll("path")
-          .transition()
-          .duration(500)
-          .style("opacity", 0.7)
-          .each("end", function() {
-            d3.select(this).on("mouseover", mouseover);
-          });
+        sequence.style.opacity = "0";
         explanation.style.visibility = "hidden";
       }
 
