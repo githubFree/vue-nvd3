@@ -67,6 +67,10 @@ export default {
         name: "root",
         children: [
           {
+            name: 'enter',
+            size: 10000
+          },
+          {
             name: "v",
             children: [
               {
