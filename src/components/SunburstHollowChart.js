@@ -7,6 +7,7 @@ export default {
     colors: { type: Array, default: () => ["#82DFD6", "#ddd"] },
     width: { type: String, default: "300" },
     height: { type: String, default: "300" },
+    pathInverted: { type: Boolean, default: true },
     modeType: { type: String, default: "count" },
     tooltip: { type: Function, default: () => {} },
     labelFormat: {
@@ -197,10 +198,15 @@ export default {
       }
 
       function getAncestors(node) {
+        console.log(node, "node");
         var path = [];
         var current = node;
         while (current.parent) {
-          path.unshift(current);
+          if (self.pathInverted) {
+            path.unshift(current);
+          } else {
+            path.push(current);
+          }
           current = current.parent;
         }
         return path;

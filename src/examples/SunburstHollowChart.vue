@@ -11,6 +11,7 @@
         modeType="value"
         width="300"
         :colors="colors"
+        :pathInverted="false"
         :showLabels="true"
         :labelFormat="labelFormat"
         :elementMousemove="elementMousemove">
