@@ -3,24 +3,56 @@ import d3 from "d3";
 export default {
   name: "SunburstChart",
   props: {
-    model: { type: Object },
-    colors: { type: Array, default: () => ["#82DFD6", "#ddd"] },
-    width: { type: String, default: "300" },
-    height: { type: String, default: "300" },
-    pathInverted: { type: Boolean, default: true },
-    modeType: { type: String, default: "count" },
-    tooltip: { type: Function, default: () => {} },
+    model: {
+      type: Object
+    },
+    colors: {
+      type: Array,
+      default: () => ["#82DFD6", "#ddd"]
+    },
+    promptText: {
+      type: String,
+      default: '的访问来源于此'
+    },
+    width: {
+      type: String,
+      default: "300"
+    },
+    height: {
+      type: String,
+      default: "300"
+    },
+    pathInverted: {
+      type: Boolean,
+      default: true
+    },
+    modeType: {
+      type: String,
+      default: "count"
+    },
+    tooltip: {
+      type: Function,
+      default: () => {}
+    },
     labelFormat: {
       type: Function,
       default: d => {
         return d.name;
       }
     },
-    showLabels: { type: Boolean, default: false },
+    showLabels: {
+      type: Boolean,
+      default: false
+    },
     margin: {
       type: Object,
       default: () => {
-        return { top: 0, left: 0, bottom: 0, right: 0 };
+        return {
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0
+        };
       }
     },
     elementClick: {
@@ -42,8 +74,7 @@ export default {
         class: "_sunburstChart"
       },
       domProps: {
-        innerHTML:
-          '<div class="sequence"></div><div class="svgBox"><div class="explanation"><span class="percentage"></span><br/> 的访问来源于此</div><svg class="chart" ref="chart" /></div>'
+        innerHTML: '<div class="sequence"></div><div class="svgBox"><div class="explanation"><span class="percentage"></span><br/>' + this.promptText + '</div><svg class="chart" ref="chart" /></div>'
       }
     });
   },
@@ -96,22 +127,22 @@ export default {
       var partition = d3.layout
         .partition()
         .size([2 * Math.PI, radius * radius])
-        .value(function(d) {
+        .value(function (d) {
           return d.size;
         });
 
       var arc = d3.svg
         .arc()
-        .startAngle(function(d) {
+        .startAngle(function (d) {
           return d.x;
         })
-        .endAngle(function(d) {
+        .endAngle(function (d) {
           return d.x + d.dx;
         })
-        .innerRadius(function(d) {
+        .innerRadius(function (d) {
           return Math.sqrt(d.y);
         })
-        .outerRadius(function(d) {
+        .outerRadius(function (d) {
           return Math.sqrt(d.y + d.dy);
         });
 
@@ -124,7 +155,7 @@ export default {
           .attr("r", radius)
           .style("opacity", 0);
 
-        var nodes = partition.nodes(json).filter(function(d) {
+        var nodes = partition.nodes(json).filter(function (d) {
           return d.dx > 0.005; // 0.005 radians = 0.29 degrees
         });
 
@@ -134,12 +165,12 @@ export default {
           .data(nodes)
           .enter()
           .append("svg:path")
-          .attr("display", function(d) {
+          .attr("display", function (d) {
             return d.depth ? null : "none";
           })
           .attr("d", arc)
           .attr("fill-rule", "evenodd")
-          .style("fill", function(d) {
+          .style("fill", function (d) {
             return colors[d.name];
           })
           .style("opacity", 0.7)
@@ -185,7 +216,7 @@ export default {
         vis.selectAll("path").style("opacity", 0.3);
         vis
           .selectAll("path")
-          .filter(function(node) {
+          .filter(function (node) {
             return sequenceArray.indexOf(node) >= 0;
           })
           .style("opacity", 0.7);
@@ -194,11 +225,11 @@ export default {
       function mouseleave(d) {
         //鼠标离开
         sequence.style.opacity = "0";
+        vis.selectAll("path").style("opacity", 1);
         explanation.style.visibility = "hidden";
       }
 
       function getAncestors(node) {
-        console.log(node, "node");
         var path = [];
         var current = node;
         while (current.parent) {
@@ -231,7 +262,7 @@ export default {
           .data(d3.entries(colors))
           .enter()
           .append("svg:g")
-          .attr("transform", function(d, i) {
+          .attr("transform", function (d, i) {
             return "translate(0," + i * (li.h + li.s) + ")";
           });
 
@@ -240,7 +271,7 @@ export default {
           .attr("ry", li.r)
           .attr("width", li.w)
           .attr("height", li.h)
-          .style("fill", function(d) {
+          .style("fill", function (d) {
             return d.value;
           });
 
@@ -249,7 +280,7 @@ export default {
           .attr("y", li.h / 2)
           .attr("dy", "0.35em")
           .attr("text-anchor", "middle")
-          .text(function(d) {
+          .text(function (d) {
             return d.key;
           });
       }
