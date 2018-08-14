@@ -14,6 +14,7 @@
         :pathInverted="false"
         :showLabels="true"
         :labelFormat="labelFormat"
+        :promptText="'路径由此扩散'"
         :elementMousemove="elementMousemove">
       </vn-SunburstHollow>
     </div>
@@ -50,12 +51,12 @@ import d3 from 'd3'
 export default {
   created: function () {
     setTimeout(() => {
-      this.kimi = 4000;
+      this.kimi = 400;
     }, 2000)
   },
   data () {
     return {
-      kimi: 5000,
+      kimi: 4000,
       colors: ['#36AAAA', '#58C7F1', '#F8A93C', '#F57844', '#6495ed',
         '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
         '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',

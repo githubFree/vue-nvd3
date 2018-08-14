@@ -85,6 +85,7 @@ export default {
   },
   data() {
     return {
+      enter: 0,
       mouseoverEvent: 0
     };
   },
@@ -94,7 +95,7 @@ export default {
       let _sunburstChart = document.getElementsByClassName("_sunburstChart")[0];
       let sequence = _sunburstChart.getElementsByClassName("sequence")[0];
       let explanation = _sunburstChart.getElementsByClassName("explanation")[0];
-
+      _sunburstChart.getElementsByClassName('chart')[0].innerHTML = '';
       //准备色库 S
       let colors = {};
       let setColors = obj => {
@@ -149,7 +150,7 @@ export default {
       createVisualization(this.model);
 
       function createVisualization(json) {
-        drawLegend();
+        // drawLegend();
         vis
           .append("svg:circle")
           .attr("r", radius)
@@ -243,47 +244,47 @@ export default {
         return path;
       }
 
-      function drawLegend() {
-        var li = {
-          w: 75,
-          h: 30,
-          s: 3,
-          r: 3
-        };
+      // function drawLegend() {
+      //   var li = {
+      //     w: 75,
+      //     h: 30,
+      //     s: 3,
+      //     r: 3
+      //   };
 
-        var legend = d3
-          .select("#partials_detail_route .legend")
-          .append("svg:svg")
-          .attr("width", li.w)
-          .attr("height", d3.keys(colors).length * (li.h + li.s));
+      //   var legend = d3
+      //     .select("#partials_detail_route .legend")
+      //     .append("svg:svg")
+      //     .attr("width", li.w)
+      //     .attr("height", d3.keys(colors).length * (li.h + li.s));
 
-        var g = legend
-          .selectAll("g")
-          .data(d3.entries(colors))
-          .enter()
-          .append("svg:g")
-          .attr("transform", function (d, i) {
-            return "translate(0," + i * (li.h + li.s) + ")";
-          });
+      //   var g = legend
+      //     .selectAll("g")
+      //     .data(d3.entries(colors))
+      //     .enter()
+      //     .append("svg:g")
+      //     .attr("transform", function (d, i) {
+      //       return "translate(0," + i * (li.h + li.s) + ")";
+      //     });
 
-        g.append("svg:rect")
-          .attr("rx", li.r)
-          .attr("ry", li.r)
-          .attr("width", li.w)
-          .attr("height", li.h)
-          .style("fill", function (d) {
-            return d.value;
-          });
+      //   g.append("svg:rect")
+      //     .attr("rx", li.r)
+      //     .attr("ry", li.r)
+      //     .attr("width", li.w)
+      //     .attr("height", li.h)
+      //     .style("fill", function (d) {
+      //       return d.value;
+      //     });
 
-        g.append("svg:text")
-          .attr("x", li.w / 2)
-          .attr("y", li.h / 2)
-          .attr("dy", "0.35em")
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            return d.key;
-          });
-      }
+      //   g.append("svg:text")
+      //     .attr("x", li.w / 2)
+      //     .attr("y", li.h / 2)
+      //     .attr("dy", "0.35em")
+      //     .attr("text-anchor", "middle")
+      //     .text(function (d) {
+      //       return d.key;
+      //     });
+      // }
     }
   },
   mounted() {
