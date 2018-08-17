@@ -12,7 +12,7 @@ export default {
     },
     promptText: {
       type: String,
-      default: '的访问来源于此'
+      default: "的访问来源于此"
     },
     width: {
       type: String,
@@ -74,7 +74,10 @@ export default {
         class: "_sunburstChart"
       },
       domProps: {
-        innerHTML: '<div class="sequence"></div><div class="svgBox"><div class="explanation"><span class="percentage"></span><br/>' + this.promptText + '</div><svg class="chart" ref="chart" /></div>'
+        innerHTML:
+          '<div class="sequence"></div><div class="svgBox"><div class="explanation"><span class="percentage"></span><br/>' +
+          this.promptText +
+          '</div><svg class="chart" ref="chart" /></div>'
       }
     });
   },
@@ -92,10 +95,11 @@ export default {
   methods: {
     init() {
       let self = this;
-      let _sunburstChart = document.getElementsByClassName("_sunburstChart")[0];
+      let _sunburstChart = this.$el;
+      let chart = _sunburstChart.getElementsByClassName("chart")[0];
       let sequence = _sunburstChart.getElementsByClassName("sequence")[0];
       let explanation = _sunburstChart.getElementsByClassName("explanation")[0];
-      _sunburstChart.getElementsByClassName('chart')[0].innerHTML = '';
+      chart.innerHTML = "";
       //准备色库 S
       let colors = {};
       let setColors = obj => {
@@ -114,8 +118,9 @@ export default {
       var radius = Math.min(this.width, this.height) / 2;
 
       var totalSize = 0;
+      console.log(this);
       var vis = d3
-        .select(this.$el.getElementsByClassName('chart')[0])
+        .select(chart)
         .attr("width", this.width)
         .attr("height", this.height)
         .append("svg:g")
@@ -128,22 +133,22 @@ export default {
       var partition = d3.layout
         .partition()
         .size([2 * Math.PI, radius * radius])
-        .value(function (d) {
+        .value(function(d) {
           return d.size;
         });
 
       var arc = d3.svg
         .arc()
-        .startAngle(function (d) {
+        .startAngle(function(d) {
           return d.x;
         })
-        .endAngle(function (d) {
+        .endAngle(function(d) {
           return d.x + d.dx;
         })
-        .innerRadius(function (d) {
+        .innerRadius(function(d) {
           return Math.sqrt(d.y);
         })
-        .outerRadius(function (d) {
+        .outerRadius(function(d) {
           return Math.sqrt(d.y + d.dy);
         });
 
@@ -156,7 +161,7 @@ export default {
           .attr("r", radius)
           .style("opacity", 0);
 
-        var nodes = partition.nodes(json).filter(function (d) {
+        var nodes = partition.nodes(json).filter(function(d) {
           return d.dx > 0.005; // 0.005 radians = 0.29 degrees
         });
 
@@ -166,12 +171,12 @@ export default {
           .data(nodes)
           .enter()
           .append("svg:path")
-          .attr("display", function (d) {
+          .attr("display", function(d) {
             return d.depth ? null : "none";
           })
           .attr("d", arc)
           .attr("fill-rule", "evenodd")
-          .style("fill", function (d) {
+          .style("fill", function(d) {
             return colors[d.name];
           })
           .style("opacity", 0.7)
@@ -217,7 +222,7 @@ export default {
         vis.selectAll("path").style("opacity", 0.3);
         vis
           .selectAll("path")
-          .filter(function (node) {
+          .filter(function(node) {
             return sequenceArray.indexOf(node) >= 0;
           })
           .style("opacity", 0.7);

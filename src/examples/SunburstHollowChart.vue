@@ -18,7 +18,23 @@
         :elementMousemove="elementMousemove">
       </vn-SunburstHollow>
     </div>
-
+    <div>
+      <vn-SunburstHollow :model="traffics1"
+        :margin="{left: 70, bottom: 30, right: 0}"
+        mode="value"
+        :elementClick="elementClick"
+        :tooltip="tooltip"
+        height="300"
+        modeType="value"
+        width="300"
+        :colors="colors"
+        :pathInverted="false"
+        :showLabels="true"
+        :labelFormat="labelFormat"
+        :promptText="'路径由此扩散'"
+        :elementMousemove="elementMousemove">
+      </vn-SunburstHollow>
+    </div>
     <div class="uk-width-medium-1-1">
       <ul class="uk-tab"
         data-uk-tab="{connect:'#tab-content'}">
@@ -50,9 +66,9 @@ import d3 from 'd3'
 
 export default {
   created: function () {
-    setTimeout(() => {
-      this.kimi = 400;
-    }, 2000)
+    // setTimeout(() => {
+    //   this.kimi = 400;
+    // }, 2000)
   },
   data () {
     return {
@@ -115,7 +131,58 @@ export default {
           }
         ]
       }
-
+      return data;
+    }, traffics1 () {
+      let data = {
+        name: "root",
+        children: [
+          {
+            name: 'ent1er',
+            size: 100
+          },
+          {
+            name: "v",
+            children: [
+              {
+                name: "kimi",
+                size: this.kimi
+              },
+              {
+                name: "v2",
+                children: [
+                  {
+                    name: "end",
+                    size: 2000
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: "a",
+            children: [
+              {
+                name: "a1",
+                size: 1000,
+                children: [
+                  {
+                    name: "a11",
+                    size: 1000
+                  },
+                  {
+                    name: "a12",
+                    size: 10001
+                  }
+                ]
+              },
+              {
+                name: "a2",
+                size: 1000
+              }
+            ]
+          }
+        ]
+      }
       return data;
     },
   },
