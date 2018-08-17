@@ -115,7 +115,7 @@ export default {
 
       var totalSize = 0;
       var vis = d3
-        .select("._sunburstChart .chart")
+        .select(this.$el.getElementsByClassName('chart')[0])
         .attr("width", this.width)
         .attr("height", this.height)
         .append("svg:g")
