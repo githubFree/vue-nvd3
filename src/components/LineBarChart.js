@@ -6,20 +6,36 @@ export default {
   name: 'LineBarChart',
   mixins: [BaseChartMixin],
   props: {
-    xFormat: {type: [Function, String]},
-    x2Format: {type: [Function, String]},
-    y1Format: {type: [Function, String]},
-    y2Format: {type: [Function, String]},
-    colors: {type: Array, default: () => ['#82DFD6', '#ddd']}
+    xFormat: {
+      type: [Function, String]
+    },
+    x2Format: {
+      type: [Function, String]
+    },
+    y1Format: {
+      type: [Function, String]
+    },
+    y2Format: {
+      type: [Function, String]
+    },
+    colors: {
+      type: Array,
+      default: () => ['#82DFD6', '#ddd']
+    }
   },
-  mounted () {
+  mounted() {
     nv.addGraph(() => {
       const chart = nv.models.linePlusBarChart()
-        .margin({left: 80, bottom: 50, right: 80, top: 30})
+        .margin({
+          left: 80,
+          bottom: 50,
+          right: 80,
+          top: 30
+        })
         .color(this.colors)
 
       if (this.xFormat) {
-        if (typeof(this.xFormat) === 'string') {
+        if (typeof (this.xFormat) === 'string') {
           chart.xAxis.tickFormat(d3.format(this.xFormat))
         } else {
           chart.xAxis.tickFormat(this.xFormat)
@@ -27,7 +43,7 @@ export default {
       }
 
       if (this.x2Format) {
-        if (typeof(this.x2Format) === 'string') {
+        if (typeof (this.x2Format) === 'string') {
           chart.x2Axis.tickFormat(d3.format(this.x2Format))
         } else {
           chart.x2Axis.tickFormat(this.x2Format)
@@ -35,7 +51,7 @@ export default {
       }
 
       if (this.y1Format) {
-        if (typeof(this.y1Format) === 'string') {
+        if (typeof (this.y1Format) === 'string') {
           chart.y1Axis.tickFormat(d3.format(this.y1Format))
         } else {
           chart.y1Axis.tickFormat(this.y1Format)
@@ -43,7 +59,7 @@ export default {
       }
 
       if (this.y2Format) {
-        if (typeof(this.y2Format) === 'string') {
+        if (typeof (this.y2Format) === 'string') {
           chart.y2Axis.tickFormat(d3.format(this.y2Format))
         } else {
           chart.y2Axis.tickFormat(this.y2Format)

@@ -4,7 +4,6 @@
     <div class="uk-margin-bottom">
       <vn-line :model="traffics"
         :x-format="formatDate"
-        :height="'300'"
         y-format=",f">
       </vn-line>
     </div>
@@ -47,9 +46,9 @@ export default {
     const gen_item = (month, day) => {
       return {
         date: new Date(`2016-${month}-${day}`).getTime(),
-        visits: Faker.random.number(10000),
-        views: Faker.random.number(20000),
-        losses: Faker.random.number(3000),
+        visits: Faker.random.number(100000000),
+        views: Faker.random.number(2000000000),
+        losses: Faker.random.number(300000000),
         stay: Faker.random.number(50)
       }
     }

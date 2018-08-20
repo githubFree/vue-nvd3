@@ -20,26 +20,51 @@ export default {
       type: String,
       default: 'cardinal'
     },
+    xAxisshowMaxMin: {
+      type: Boolean,
+      default: true
+    },
+    yAxisshowMaxMin: {
+      type: Boolean,
+      default: true
+    },
     margin: {
       type: Object,
       default: () => {
         return {
-          left: 50,
-          bottom: 30,
-          right: 0
+          top: 0,
+          right: 30,
+          bottom: 20,
+          left: 40,
         }
       }
     }
   },
   mounted() {
+    let max = 0;
+    let data = this.model;
+    data.map((item) => {
+      item.values.map((v) => {
+        if (v.y > max) {
+          max = v.y;
+        }
+      });
+    });
+    console.log(max.toString().length);
+    if (max.toString().length <= 4) {
+      this.margin.left = max.toString().length + '0'
+    } else {
+      this.margin.left = max.toString().length - 1 + '0'
+    }
     nv.addGraph(() => {
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)
+        .height(300)
         .interpolate(this.interpolate)
         .color(this.colors)
 
-      const xaxis = chart.xAxis.showMaxMin(false)
+      const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
 
       if (this.xFormat) {
         if (typeof (this.xFormat) === 'string') {
@@ -49,7 +74,7 @@ export default {
         }
       }
 
-      const yaxis = chart.yAxis.showMaxMin(false)
+      const yaxis = chart.yAxis.showMaxMin(this.yAxisshowMaxMin)
       if (this.yFormat) {
         if (typeof (this.yFormat) === 'string') {
           yaxis.tickFormat(d3.format(this.yFormat))
