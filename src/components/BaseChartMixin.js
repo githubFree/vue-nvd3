@@ -1,7 +1,12 @@
 export default {
   props: {
-    model: { type: Array },
-    height: { type: String, default: "300px" }
+    model: {
+      type: Array
+    },
+    height: {
+      type: String,
+      default: "300px"
+    }
   },
   data() {
     return {
@@ -29,6 +34,6 @@ export default {
     }
   },
   render(h) {
-    return <svg ref="chart" />;
+    return <svg ref = "chart" / > ;
   }
 };

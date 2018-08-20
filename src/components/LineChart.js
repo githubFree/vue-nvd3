@@ -6,20 +6,37 @@ export default {
   name: 'LineChart',
   mixins: [BaseChartMixin],
   props: {
-    xFormat: { type: [Function, String] },
-    yFormat: { type: [Function, String] },
-    colors: { type: Array, default: () => ['#82DFD6', '#ddd'] },
+    xFormat: {
+      type: [Function, String]
+    },
+    yFormat: {
+      type: [Function, String]
+    },
+    colors: {
+      type: Array,
+      default: () => ['#82DFD6', '#ddd']
+    },
+    interpolate: {
+      type: String,
+      default: 'cardinal'
+    },
     margin: {
-      type: Object, default: () => {
-        return { left: 50, bottom: 30, right: 0 }
+      type: Object,
+      default: () => {
+        return {
+          left: 50,
+          bottom: 30,
+          right: 0
+        }
       }
     }
   },
-  mounted () {
+  mounted() {
     nv.addGraph(() => {
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)
+        .interpolate(this.interpolate)
         .color(this.colors)
 
       const xaxis = chart.xAxis.showMaxMin(false)

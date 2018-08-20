@@ -4,7 +4,7 @@
     <div class="uk-margin-bottom">
       <vn-line :model="traffics"
         :x-format="formatDate"
-        :height="100"
+        :height="'300'"
         y-format=",f">
       </vn-line>
     </div>
@@ -62,6 +62,28 @@ export default {
     }
   },
   computed: {
+    // traffics () {
+    //   var sin = [],
+    //     cos = [];
+
+    //   for (var i = 0; i < 100; i++) {
+    //     sin.push({ x: i, y: Math.sin(i / 10) });
+    //     cos.push({ x: i, y: .5 * Math.cos(i / 10) });
+    //   }
+    //   let re  =[
+    //     {
+    //       values: sin,
+    //       key: "Sine Wave",
+    //       color: "#ff7f0e"
+    //     },
+    //     {
+    //       values: cos,
+    //       key: "Cosine Wave",
+    //       color: "#2ca02c"
+    //     }
+    //   ];
+    //   return re;
+    // },
     traffics () {
       return [
         {
