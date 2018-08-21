@@ -46,9 +46,9 @@ export default {
     const gen_item = (month, day) => {
       return {
         date: new Date(`2016-${month}-${day}`).getTime(),
-        visits: Faker.random.number(100000000),
-        views: Faker.random.number(2000000000),
-        losses: Faker.random.number(300000000),
+        visits: Faker.random.number(10000),
+        views: Faker.random.number(10000),
+        losses: Faker.random.number(10000),
         stay: Faker.random.number(50)
       }
     }
@@ -61,33 +61,11 @@ export default {
     }
   },
   computed: {
-    // traffics () {
-    //   var sin = [],
-    //     cos = [];
-
-    //   for (var i = 0; i < 100; i++) {
-    //     sin.push({ x: i, y: Math.sin(i / 10) });
-    //     cos.push({ x: i, y: .5 * Math.cos(i / 10) });
-    //   }
-    //   let re  =[
-    //     {
-    //       values: sin,
-    //       key: "Sine Wave",
-    //       color: "#ff7f0e"
-    //     },
-    //     {
-    //       values: cos,
-    //       key: "Cosine Wave",
-    //       color: "#2ca02c"
-    //     }
-    //   ];
-    //   return re;
-    // },
     traffics () {
       return [
         {
           key: 'visits',
-          area: true,
+          // area: true,
           values: _.map(this.trafficData, (t) => {
             return {
               x: t.date,
@@ -97,7 +75,7 @@ export default {
         },
         {
           key: 'views',
-          bar: true,
+          // bar: true,
           values: _.map(this.trafficData, (t) => {
             return {
               x: t.date,
@@ -107,7 +85,7 @@ export default {
         },
         {
           key: 'losses',
-          area: true,
+          // area: true,
           values: _.map(this.trafficData, (t) => {
             return {
               x: t.date,

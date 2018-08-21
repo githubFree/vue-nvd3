@@ -14,7 +14,7 @@ export default {
     },
     colors: {
       type: Array,
-      default: () => ['#82DFD6', '#ddd']
+      default: () => ['#82DFD6', '#ddd', '#ff0000']
     },
     interpolate: {
       type: String,
@@ -22,18 +22,18 @@ export default {
     },
     xAxisshowMaxMin: {
       type: Boolean,
-      default: true
+      default: false
     },
     yAxisshowMaxMin: {
       type: Boolean,
-      default: true
+      default: false
     },
     margin: {
       type: Object,
       default: () => {
         return {
-          top: 0,
-          right: 30,
+          top: 20,
+          right: 0,
           bottom: 20,
           left: 40,
         }
@@ -41,6 +41,7 @@ export default {
     }
   },
   mounted() {
+    let min = 9999;
     let max = 0;
     let data = this.model;
     data.map((item) => {
@@ -48,22 +49,25 @@ export default {
         if (v.y > max) {
           max = v.y;
         }
+        if (v.y < min) {
+          min = v.y;
+        }
       });
     });
-    console.log(max.toString().length);
     if (max.toString().length <= 4) {
       this.margin.left = max.toString().length + '0'
     } else {
       this.margin.left = max.toString().length - 1 + '0'
     }
+
     nv.addGraph(() => {
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)
         .height(300)
+        .yDomain([-min * 2, max + max * 0.1])
         .interpolate(this.interpolate)
         .color(this.colors)
-
       const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
 
       if (this.xFormat) {
@@ -82,6 +86,9 @@ export default {
           yaxis.tickFormat(this.yFormat)
         }
       }
+
+      // yaxis.outerTickSize(20);
+      // xaxis.tickPadding(15);
 
       this.redraw(chart)
       this.chartRef = chart
