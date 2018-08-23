@@ -18,23 +18,6 @@
         :elementMousemove="elementMousemove">
       </vn-SunburstHollow>
     </div>
-    <div>
-      <vn-SunburstHollow :model="traffics1"
-        :margin="{left: 70, bottom: 30, right: 0}"
-        mode="value"
-        :elementClick="elementClick"
-        :tooltip="tooltip"
-        height="300"
-        modeType="value"
-        width="300"
-        :colors="colors"
-        :pathInverted="false"
-        :showLabels="true"
-        :labelFormat="labelFormat"
-        :promptText="'路径由此扩散'"
-        :elementMousemove="elementMousemove">
-      </vn-SunburstHollow>
-    </div>
     <div class="uk-width-medium-1-1">
       <ul class="uk-tab"
         data-uk-tab="{connect:'#tab-content'}">

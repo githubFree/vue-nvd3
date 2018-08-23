@@ -74,8 +74,7 @@ export default {
         class: "_sunburstChart"
       },
       domProps: {
-        innerHTML:
-          '<div class="sequence"></div><div class="svgBox"><div class="explanation"><span class="percentage"></span><br/>' +
+        innerHTML: '<div class="sequence"></div><div class="svgBox"><div class="explanation"><span class="percentage"></span><br/>' +
           this.promptText +
           '</div><svg class="chart" ref="chart" /></div>'
       }
@@ -133,22 +132,22 @@ export default {
       var partition = d3.layout
         .partition()
         .size([2 * Math.PI, radius * radius])
-        .value(function(d) {
+        .value(function (d) {
           return d.size;
         });
 
       var arc = d3.svg
         .arc()
-        .startAngle(function(d) {
+        .startAngle(function (d) {
           return d.x;
         })
-        .endAngle(function(d) {
+        .endAngle(function (d) {
           return d.x + d.dx;
         })
-        .innerRadius(function(d) {
+        .innerRadius(function (d) {
           return Math.sqrt(d.y);
         })
-        .outerRadius(function(d) {
+        .outerRadius(function (d) {
           return Math.sqrt(d.y + d.dy);
         });
 
@@ -161,7 +160,7 @@ export default {
           .attr("r", radius)
           .style("opacity", 0);
 
-        var nodes = partition.nodes(json).filter(function(d) {
+        var nodes = partition.nodes(json).filter(function (d) {
           return d.dx > 0.005; // 0.005 radians = 0.29 degrees
         });
 
@@ -171,12 +170,12 @@ export default {
           .data(nodes)
           .enter()
           .append("svg:path")
-          .attr("display", function(d) {
+          .attr("display", function (d) {
             return d.depth ? null : "none";
           })
           .attr("d", arc)
           .attr("fill-rule", "evenodd")
-          .style("fill", function(d) {
+          .style("fill", function (d) {
             return colors[d.name];
           })
           .style("opacity", 0.7)
@@ -222,7 +221,7 @@ export default {
         vis.selectAll("path").style("opacity", 0.3);
         vis
           .selectAll("path")
-          .filter(function(node) {
+          .filter(function (node) {
             return sequenceArray.indexOf(node) >= 0;
           })
           .style("opacity", 0.7);
