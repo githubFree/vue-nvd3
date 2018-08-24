@@ -41,26 +41,25 @@ export default {
     }
   },
   mounted() {
-    let min = 9999;
-    let max = 0;
-    let data = this.model;
-    data.map((item) => {
-      item.values.map((v) => {
-        if (v.y > max) {
-          max = v.y;
-        }
-        if (v.y < min) {
-          min = v.y;
-        }
-      });
-    });
-    if (max.toString().length <= 4) {
-      this.margin.left = max.toString().length + '0'
-    } else {
-      this.margin.left = max.toString().length - 1 + '0'
-    }
-
     nv.addGraph(() => {
+      let min = 9999;
+      let max = 0;
+      let data = this.model;
+      data.map((item) => {
+        item.values.map((v) => {
+          if (v.y > max) {
+            max = v.y;
+          }
+          if (v.y < min) {
+            min = v.y;
+          }
+        });
+      });
+      if (max.toString().length <= 4) {
+        this.margin.left = max.toString().length + '0'
+      } else {
+        this.margin.left = max.toString().length - 1 + '0'
+      }
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)

@@ -27,9 +27,10 @@
     "chart"
   ],
   "dependencies": {
-    "vue": "^2.1.0",
+    "@tencent/vue-nvd3": "^1.1.19",
+    "d3": "^3.5.17",
     "nvd3": "^1.8.5",
-    "d3": "^3.5.17"
+    "vue": "^2.1.0"
   },
   "devDependencies": {
     "Faker": "^0.7.2",
