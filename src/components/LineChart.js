@@ -5,6 +5,12 @@ import BaseChartMixin from './BaseChartMixin'
 export default {
   name: 'LineChart',
   mixins: [BaseChartMixin],
+  data() {
+    return {
+      min: null,
+      max: 0
+    }
+  },
   props: {
     xFormat: {
       type: [Function, String]
@@ -42,29 +48,12 @@ export default {
   },
   mounted() {
     nv.addGraph(() => {
-      let min = 9999;
-      let max = 0;
-      let data = this.model;
-      data.map((item) => {
-        item.values.map((v) => {
-          if (v.y > max) {
-            max = v.y;
-          }
-          if (v.y < min) {
-            min = v.y;
-          }
-        });
-      });
-      if (max.toString().length <= 4) {
-        this.margin.left = max.toString().length + '0'
-      } else {
-        this.margin.left = max.toString().length - 1 + '0'
-      }
+      this.getLineMinMax();
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)
         .height(300)
-        .yDomain([min - 700, max + max * 0.1])
+        .yDomain([this.min - 800, this.max + this.max * 0.1])
         .interpolate(this.interpolate)
         .color(this.colors)
       const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
