@@ -17,9 +17,9 @@ export default {
     model(value) {
       if (this.chartRef) {
         if (this.$vnode.componentOptions.tag == 'vn-line') {
-
+          this.getLineMinMax();
+          this.chartRef.yDomain([this.min - this.min * 0.5, this.max + this.max * 0.1]).margin(this.margin);
         }
-        this.chartRef.yDomain([30000000, 50000000]);
         this.redraw(this.chartRef);
       }
     }
