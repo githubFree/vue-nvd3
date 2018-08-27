@@ -4,7 +4,6 @@
     <div class="uk-margin-bottom">
       <vn-line :model="traffics"
         :x-format="formatDate"
-        :height="150"
         y-format=",f">
       </vn-line>
     </div>
