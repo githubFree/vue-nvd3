@@ -23,8 +23,8 @@ export default {
       default: () => ['#82DFD6', '#ddd', '#ff0000']
     },
     height: {
-      type: Number,
-      default: 300
+      type: String,
+      default: '300'
     },
     interpolate: {
       type: String,
