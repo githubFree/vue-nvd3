@@ -53,7 +53,7 @@ export default {
         .useInteractiveGuideline(true)
         .margin(this.margin)
         .height(300)
-        .yDomain([this.min - 800, this.max + this.max * 0.1])
+        .yDomain([this.min - this.min * 0.5, this.max + this.max * 0.1])
         .interpolate(this.interpolate)
         .color(this.colors)
       const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
