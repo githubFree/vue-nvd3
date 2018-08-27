@@ -22,6 +22,10 @@ export default {
       type: Array,
       default: () => ['#82DFD6', '#ddd', '#ff0000']
     },
+    height: {
+      type: Number,
+      default: 300
+    },
     interpolate: {
       type: String,
       default: 'cardinal'
@@ -52,7 +56,7 @@ export default {
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)
-        .height(300)
+        .height(this.height)
         .yDomain([this.min - this.min * 0.5, this.max + this.max * 0.1])
         .interpolate(this.interpolate)
         .color(this.colors)
