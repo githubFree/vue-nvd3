@@ -23,7 +23,6 @@ export default {
       default: () => ['#82DFD6', '#ddd', '#ff0000']
     },
     height: {
-      type: String,
       default: '300'
     },
     interpolate: {
@@ -56,7 +55,7 @@ export default {
       const chart = nv.models.lineChart()
         .useInteractiveGuideline(true)
         .margin(this.margin)
-        .height(this.height)
+        .height(parseInt(this.height))
         .yDomain([this.min - this.min * 1, this.max + this.max * 0.2])
         .interpolate(this.interpolate)
         .color(this.colors)
