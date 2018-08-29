@@ -10,9 +10,9 @@
         height="300"
         modeType="value"
         width="300"
-        :colors="colors"
         :pathInverted="false"
         :showLabels="true"
+        :colors="colors"
         :labelFormat="labelFormat"
         :promptText="'路径由此扩散'"
         :elementMousemove="elementMousemove">
@@ -247,6 +247,10 @@ export default {
   border-top: 5px solid transparent;
   border-left: 10px solid #aaa;
   border-bottom: 5px solid transparent;
+}
+.sequence text,
+.svgBox path {
+  stroke: #fff;
 }
 </style>
 
