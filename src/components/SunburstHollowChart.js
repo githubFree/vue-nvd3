@@ -152,7 +152,6 @@ export default {
           setColors(data[k]['children'], data[k]['color'], 1);
         }
       }
-      console.log(data);
       //准备色库 E
 
       var radius = Math.min(this.width, this.height) / 2;
