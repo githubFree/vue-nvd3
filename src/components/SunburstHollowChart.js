@@ -8,7 +8,18 @@ export default {
     },
     colors: {
       type: Array,
-      default: () => ["#82DFD6", "#ddd"]
+      // default: () => [
+      //   'rgba(54,170,170,1)',
+      //   'rgba(220,20,60,1)',
+      //   'rgba(139,0,139,1)',
+      //   'rgba(72,61,139,1)',
+      //   'rgba(0,0,255,1)',
+      //   'rgba(30,144,255,1)',
+      //   'rgba(0,139,139,1)',
+      //   'rgba(0,255,127,1)',
+      //   'rgba(255,255,0,1)',
+      // ]
+      default: () => ['#ba55d3', '#ffd700']
     },
     promptText: {
       type: String,
@@ -92,6 +103,24 @@ export default {
     };
   },
   methods: {
+    hexToRgb(hex) {
+      var color = [],
+        rgb = [];
+      hex = hex.replace(/#/, "");
+      if (hex.length == 3) { // 处理 "#abc" 成 "#aabbcc"
+        var tmp = [];
+        for (var i = 0; i < 3; i++) {
+          tmp.push(hex.charAt(i) + hex.charAt(i));
+        }
+        hex = tmp.join("");
+      }
+
+      for (var i = 0; i < 3; i++) {
+        color[i] = "0x" + hex.substr(i * 2, 2);
+        rgb.push(parseInt(Number(color[i])));
+      }
+      return "rgb(" + rgb.join(",") + ")";
+    },
     init() {
       let self = this;
       let _sunburstChart = this.$el;
@@ -100,24 +129,34 @@ export default {
       let explanation = _sunburstChart.getElementsByClassName("explanation")[0];
       chart.innerHTML = "";
       //准备色库 S
-      let colors = {};
-      let setColors = obj => {
+      let data = this.model.children;
+      let i = 0;
+      for (let k in data) {
+        let rgb = this.hexToRgb(this.colors[i]);
+        data[k]['color'] = rgb;
+        i++;
+      }
+      let setColors = (obj, rgba, level) => {
         for (let k in obj) {
-          colors[obj[k]["name"]] = this.colors[
-            parseInt(Math.random() * this.colors.length)
-          ];
+          let rgb = rgba.replace('rgb(', '').replace(')', '');
+          let color = 'rgba(' + rgb + ',' + (1 - level * 0.125) + ')';
+          obj[k]['color'] = color;
           if (obj[k]["children"]) {
-            setColors(obj[k]["children"]);
+            level++;
+            setColors(obj[k]["children"], rgba, level++);
           }
         }
-      };
-      setColors(this.model.children);
+      }
+      for (let k in data) {
+        if (data[k]['children']) {
+          setColors(data[k]['children'], data[k]['color'], 1);
+        }
+      }
       //准备色库 E
 
       var radius = Math.min(this.width, this.height) / 2;
 
       var totalSize = 0;
-      console.log(this);
       var vis = d3
         .select(chart)
         .attr("width", this.width)
@@ -176,7 +215,7 @@ export default {
           .attr("d", arc)
           .attr("fill-rule", "evenodd")
           .style("fill", function (d) {
-            return colors[d.name];
+            return d.color;
           })
           .style("opacity", 0.7)
           .on("mouseover", mouseover)
@@ -191,7 +230,8 @@ export default {
           var self = nodeArray[i];
           html +=
             '<li><span class="tx" style="background:' +
-            colors[self.name] +
+            // colors[self.name] +
+            self.color +
             '">' +
             self.name +
             "</span>";
