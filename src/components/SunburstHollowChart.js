@@ -130,20 +130,38 @@ export default {
       chart.innerHTML = "";
       //准备色库 S
       let data = this.model.children;
-      let i = 0;
+      var i = 0;
       for (let k in data) {
         let rgb = this.hexToRgb(this.colors[i]);
         data[k]['color'] = rgb;
         i++;
       }
+      //计算深度 s
+      let array = {
+          '{': 1,
+          '}': -1
+        },
+        depth = 0,
+        count = 0;
+      let json = JSON.stringify(data);
+      for (var i = 0, length = json.length; i < length; i++) {
+        var result = array[json.charAt(i)];
+        if (!result) continue;
+        count += result;
+        if (count > depth) {
+          depth = count;
+        }
+      }
+      //计算深度 e
       let setColors = (obj, rgba, level) => {
         for (let k in obj) {
           let rgb = rgba.replace('rgb(', '').replace(')', '');
-          let color = 'rgba(' + rgb + ',' + (1 - level * 0.125) + ')';
+          let color = 'rgba(' + rgb + ',' + (1 - level * ((1 - 0.1) / depth)) + ')';
           obj[k]['color'] = color;
           if (obj[k]["children"]) {
-            level++;
-            setColors(obj[k]["children"], rgba, level++);
+            (function (level) {
+              setColors(obj[k]["children"], rgba, ++level);
+            })(level)
           }
         }
       }
@@ -227,13 +245,11 @@ export default {
         nodeArray.reverse();
         let html = "<ul>";
         for (var i = 0; i < nodeArray.length; i++) {
-          var self = nodeArray[i];
           html +=
             '<li><span class="tx" style="background:' +
-            // colors[self.name] +
-            self.color +
+            nodeArray[0].color +
             '">' +
-            self.name +
+            nodeArray[i].name +
             "</span>";
           if (i < nodeArray.length - 1) {
             html += '<i class="icon"></i>';
