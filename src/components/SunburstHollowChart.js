@@ -242,12 +242,16 @@ export default {
       }
 
       let updateBreadcrumbs = (nodeArray, percentageString) => {
+        let color = nodeArray[0].color;
+        if (this.pathInverted == false) {
+          color = nodeArray[nodeArray.length - 1].color;
+        }
         nodeArray.reverse();
         let html = "<ul>";
         for (var i = 0; i < nodeArray.length; i++) {
           html +=
             '<li><span class="tx" style="background:' +
-            nodeArray[0].color +
+            color +
             '">' +
             nodeArray[i].name +
             "</span>";
