@@ -145,23 +145,27 @@ export default {
         data[k]['color'] = rgb;
         i++;
       }
+
       //计算深度 s
-      let array = {
-          '{': 1,
-          '}': -1
-        },
-        depth = 0,
-        count = 0;
-      let json = JSON.stringify(data);
-      for (var i = 0, length = json.length; i < length; i++) {
-        var result = array[json.charAt(i)];
-        if (!result) continue;
-        count += result;
-        if (count > depth) {
-          depth = count;
+      if (data) {
+        var array = {
+            '{': 1,
+            '}': -1
+          },
+          depth = 0,
+          count = 0;
+        var json = JSON.stringify(data);
+        for (var i = 0, length = json.length; i < length; i++) {
+          var result = array[json.charAt(i)];
+          if (!result) continue;
+          count += result;
+          if (count > depth) {
+            depth = count;
+          }
         }
       }
       //计算深度 e
+
       let setColors = (obj, rgba, level) => {
         for (let k in obj) {
           let rgb = rgba.replace('rgb(', '').replace(')', '');
