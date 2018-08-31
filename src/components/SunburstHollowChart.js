@@ -4,7 +4,13 @@ export default {
   name: "SunburstChart",
   props: {
     model: {
-      type: Object
+      type: Object,
+      default: () => {
+        return {
+          name: "root",
+          children: []
+        }
+      }
     },
     colors: {
       type: Array,
@@ -132,6 +138,9 @@ export default {
       let data = this.model.children;
       var i = 0;
       for (let k in data) {
+        if (!this.colors[i]) {
+          i = 0;
+        }
         let rgb = this.hexToRgb(this.colors[i]);
         data[k]['color'] = rgb;
         i++;
