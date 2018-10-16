@@ -42,7 +42,7 @@ export default {
       default: () => {
         return {
           top: 20,
-          right: 0,
+          right: 30,
           bottom: 20,
           left: 40,
         }
@@ -60,6 +60,7 @@ export default {
         .interpolate(this.interpolate)
         .color(this.colors)
       const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
+      chart.lines.scatter.xScale(d3.time.scale.utc());
 
       if (this.xFormat) {
         if (typeof (this.xFormat) === 'string') {
@@ -68,7 +69,7 @@ export default {
           xaxis.tickFormat(this.xFormat)
         }
       }
-
+      
       const yaxis = chart.yAxis.showMaxMin(this.yAxisshowMaxMin)
       if (this.yFormat) {
         if (typeof (this.yFormat) === 'string') {
