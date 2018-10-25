@@ -84,7 +84,7 @@ import 'uikit'
 export default {
   name: 'app',
   mounted () {
-    this.$router.push({ name: 'SunburstHollowChart' })
+    this.$router.push({ name: 'StackedAreaChart' })
   }
 }
 </script>
