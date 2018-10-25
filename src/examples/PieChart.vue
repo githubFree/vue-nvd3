@@ -56,43 +56,43 @@
 </template>
 
 <script>
-  import Faker from 'Faker'
-  import _ from 'lodash'
-  import d3 from 'd3'
+import Faker from 'Faker'
+import _ from 'lodash'
+import d3 from 'd3'
 
-  export default {
-    data () {
-      return {
-        pages: [
-          {
-            name: '首页',
-            views: Faker.random.number(1000000),
-            stay: Faker.random.number(100),
-            ratio: Faker.random.number(100) / 100
-          }, {
-            name: '产品详情',
-            views: Faker.random.number(1000000),
-            stay: Faker.random.number(100),
-            ratio: Faker.random.number(100) / 100
-          }, {
-            name: '搜索结果',
-            views: Faker.random.number(1000000),
-            stay: Faker.random.number(100),
-            ratio: Faker.random.number(100) / 100
-          }, {
-            name: '产品列表',
-            views: Faker.random.number(1000000),
-            stay: Faker.random.number(100),
-            ratio: Faker.random.number(100) / 100
-          }, {
-            name: '购物车',
-            views: Faker.random.number(1000000),
-            stay: Faker.random.number(100),
-            ratio: Faker.random.number(100) / 100
-          }
-        ],
-        refers: []
-      }
+export default {
+  data () {
+    return {
+      pages: [
+        {
+          name: '首页',
+          views: Faker.random.number(1000000),
+          stay: Faker.random.number(100),
+          ratio: Faker.random.number(100) / 100
+        }, {
+          name: '产品详情',
+          views: Faker.random.number(1000000),
+          stay: Faker.random.number(100),
+          ratio: Faker.random.number(100) / 100
+        }, {
+          name: '搜索结果',
+          views: Faker.random.number(1000000),
+          stay: Faker.random.number(100),
+          ratio: Faker.random.number(100) / 100
+        }, {
+          name: '产品列表',
+          views: Faker.random.number(1000000),
+          stay: Faker.random.number(100),
+          ratio: Faker.random.number(100) / 100
+        }, {
+          name: '购物车',
+          views: Faker.random.number(1000000),
+          stay: Faker.random.number(100),
+          ratio: Faker.random.number(100) / 100
+        }
+      ],
+      refers: []
     }
   }
+}
 </script>

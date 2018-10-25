@@ -7,13 +7,36 @@ export default {
   name: "StackedAreaChart",
   mixins: [BaseChartMixin],
   props: {
-    xFormat: { type: [Function, String] },
-    yFormat: { type: [Function, String] },
-    rightAlignYAxis: { type: Boolean, default: true },
-    showControls: { type: Boolean, default: true },
-    clipEdge: { type: Boolean, default: true },
-    chartStyle: { type: String, default: "stack" },
-    showYAxis: { type: Boolean, default: true },
+    xFormat: {
+      type: [Function, String]
+    },
+    yFormat: {
+      type: [Function, String]
+    },
+    rightAlignYAxis: {
+      type: Boolean,
+      default: true
+    },
+    showControls: {
+      type: Boolean,
+      default: true
+    },
+    clipEdge: {
+      type: Boolean,
+      default: true
+    },
+    chartStyle: {
+      type: String,
+      default: "stack_percent"
+    },
+    showYAxis: {
+      type: Boolean,
+      default: true
+    },
+    interpolate: {
+      type: String,
+      default: 'basis'
+    },
     margin: {
       type: Object,
       default: () => {
@@ -64,12 +87,13 @@ export default {
         .margin(this.margin)
         .color(this.colors)
         .showYAxis(this.showYAxis)
+        .interpolate(this.interpolate)
         .controlLabels({
           stacked: "堆叠",
           stream: "流",
           expanded: "扩展"
         });
-        chart.xScale(d3.time.scale.utc());
+      chart.xScale(d3.time.scale.utc());
       //Axis settings
       if (this.xFormat) {
         if (typeof this.xFormat === "string") {

@@ -6,7 +6,7 @@
         :x-format="formatDate"
         y-format=",f"
         :showYAxis="false"
-        chartStyle="expand">
+        :show-tooltip-percent="true">
       </vn-stacked-area>
     </div>
 
