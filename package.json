@@ -1,6 +1,6 @@
 {
   "name": "@tencent/vue-nvd3",
-  "version": "1.1.20",
+  "version": "1.1.34",
   "description": "The NVD3 chart library for Vue",
   "author": "Ray <csharp2002@hotmail.com>",
   "scripts": {
