@@ -16,6 +16,7 @@ export default {
   watch: {
     model(value) {
       if (this.chartRef) {
+        console.log(this.chartRef)
         if (this.$vnode.componentOptions.tag == 'vn-line') {
           this.getLineMinMax();
           this.chartRef.yDomain([this.min - this.min * 0.5, this.max + this.max * 0.1]).margin(this.margin);
@@ -27,19 +28,22 @@ export default {
   methods: {
     getLineMinMax() {
       let data = this.model;
+      let min = 0,max = 0
       data.map((item) => {
         item.values.map((v) => {
-          if (this.min == null) {
-            this.min = v.y;
+          if (min == 0) {
+            min = v.y;
           }
-          if (v.y > this.max) {
-            this.max = v.y;
+          if(v.y > max){
+            max = v.y
           }
-          if (v.y < this.min) {
-            this.min = v.y;
+          if(v.y < min){
+            min = v.y
           }
         });
       });
+      this.max = max
+      this.min = min
       if (this.max.toString().length <= 4) {
         this.margin.left = this.max.toString().length + '0'
       } else {
