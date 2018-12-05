@@ -146,14 +146,17 @@ export default {
         data[k]['color'] = rgb;
         i++;
       }
-      if(data.length == 1){
+      if(data && data.length == 1){
         this.ifRoot = true
-        let j = 0
+        let j = 1
         for (let k in data[0].children) {
           if (!this.colors[j]) {
-            j = 0;
+            j = 1;
           }
-          let rgb = this.hexToRgb(this.colors[j+1]);
+          if(this.colors.length == 1){
+            j = 0
+          }
+          let rgb = this.hexToRgb(this.colors[j]);
           data[0].children[k]['color'] = rgb;
           j++;
         }
@@ -192,7 +195,7 @@ export default {
         }
       }
      
-      if (this.ifRoot) {
+      if (this.ifRoot && data[0] && data[0].children) {
         for (let k in data[0].children) {
           if (data[0].children[k]['children']) {
             setColors(data[0].children[k]['children'], data[0].children[k]['color'], 2);
