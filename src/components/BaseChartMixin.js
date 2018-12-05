@@ -27,19 +27,22 @@ export default {
   methods: {
     getLineMinMax() {
       let data = this.model;
+      let min = 0,max = 0
       data.map((item) => {
         item.values.map((v) => {
-          if (this.min == null) {
-            this.min = v.y;
+          if (min == 0) {
+            min = v.y;
           }
-          if (v.y > this.max) {
-            this.max = v.y;
+          if(v.y > max){
+            max = v.y
           }
-          if (v.y < this.min) {
-            this.min = v.y;
+          if(v.y < min){
+            min = v.y
           }
         });
       });
+      this.max = max
+      this.min = min
       if (this.max.toString().length <= 4) {
         this.margin.left = this.max.toString().length + '0'
       } else {

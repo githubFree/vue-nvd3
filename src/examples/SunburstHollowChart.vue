@@ -2,7 +2,7 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-SunburstHollow :model="traffics"
+      <vn-SunburstHollow :model="traffics1"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
@@ -164,6 +164,36 @@ export default {
               }
             ]
           }
+        ]
+      }
+      return data;
+    }, traffics2 () {
+      let data = {
+        name: "root",
+        children: [
+          {
+            name: 'index',
+            size: 100,
+            children: [
+              {
+                name: "kimi",
+                size: this.kimi
+              },
+              {
+                name: "v2",
+                children: [
+                  {
+                    name: "end",
+                    size: 2000
+                  },
+                  {
+                    name: "end",
+                    size: 2000
+                  }
+                ]
+              }
+            ]
+          },
         ]
       }
       return data;
