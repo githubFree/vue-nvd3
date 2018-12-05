@@ -148,12 +148,15 @@ export default {
       }
       if(data && data.length == 1){
         this.ifRoot = true
-        let j = 0
+        let j = 1
         for (let k in data[0].children) {
-          if (!this.colors[j] || !this.colors[j+1]) {
-            j = 0;
+          if (!this.colors[j]) {
+            j = 1;
           }
-          let rgb = this.hexToRgb(this.colors[j+1]);
+          if(this.colors.length == 1){
+            j = 0
+          }
+          let rgb = this.hexToRgb(this.colors[j]);
           data[0].children[k]['color'] = rgb;
           j++;
         }

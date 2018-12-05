@@ -2,7 +2,7 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-SunburstHollow :model="traffics1"
+      <vn-SunburstHollow :model="traffics2"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
