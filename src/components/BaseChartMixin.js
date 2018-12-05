@@ -16,7 +16,6 @@ export default {
   watch: {
     model(value) {
       if (this.chartRef) {
-        console.log(this.chartRef)
         if (this.$vnode.componentOptions.tag == 'vn-line') {
           this.getLineMinMax();
           this.chartRef.yDomain([this.min - this.min * 0.5, this.max + this.max * 0.1]).margin(this.margin);

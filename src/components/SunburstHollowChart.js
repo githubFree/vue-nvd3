@@ -49,7 +49,7 @@ export default {
     },
     tooltip: {
       type: Function,
-      default: () => {}
+      default: () => { }
     },
     labelFormat: {
       type: Function,
@@ -74,14 +74,14 @@ export default {
     },
     elementClick: {
       type: Function,
-      default: () => {}
+      default: () => { }
     },
     elementMousemove: {
       type: Function,
-      default: () => {}
+      default: () => { }
     }
   },
-  render(h) {
+  render (h) {
     return h("div", {
       style: {
         width: this.width + "px",
@@ -98,18 +98,19 @@ export default {
     });
   },
   watch: {
-    model(value) {
+    model (value) {
       this.init();
     }
   },
-  data() {
+  data () {
     return {
       enter: 0,
-      mouseoverEvent: 0
+      mouseoverEvent: 0,
+      ifRoot: false //根元素是否只有一个
     };
   },
   methods: {
-    hexToRgb(hex) {
+    hexToRgb (hex) {
       var color = [],
         rgb = [];
       hex = hex.replace(/#/, "");
@@ -127,7 +128,7 @@ export default {
       }
       return "rgb(" + rgb.join(",") + ")";
     },
-    init() {
+    init () {
       let self = this;
       let _sunburstChart = this.$el;
       let chart = _sunburstChart.getElementsByClassName("chart")[0];
@@ -145,13 +146,25 @@ export default {
         data[k]['color'] = rgb;
         i++;
       }
+      if(data.length == 1){
+        this.ifRoot = true
+        let j = 0
+        for (let k in data[0].children) {
+          if (!this.colors[j]) {
+            j = 0;
+          }
+          let rgb = this.hexToRgb(this.colors[j+1]);
+          data[0].children[k]['color'] = rgb;
+          j++;
+        }
+      }
 
       //计算深度 s
       if (data) {
         var array = {
-            '{': 1,
-            '}': -1
-          },
+          '{': 1,
+          '}': -1
+        },
           depth = 0,
           count = 0;
         var json = JSON.stringify(data);
@@ -178,9 +191,18 @@ export default {
           }
         }
       }
-      for (let k in data) {
-        if (data[k]['children']) {
-          setColors(data[k]['children'], data[k]['color'], 1);
+     
+      if (this.ifRoot) {
+        for (let k in data[0].children) {
+          if (data[0].children[k]['children']) {
+            setColors(data[0].children[k]['children'], data[0].children[k]['color'], 2);
+          }
+        }
+      } else {
+        for (let k in data) {
+          if (data[k]['children']) {
+            setColors(data[k]['children'], data[k]['color'], 1);
+          }
         }
       }
       //准备色库 E
@@ -223,7 +245,7 @@ export default {
 
       createVisualization(this.model);
 
-      function createVisualization(json) {
+      function createVisualization (json) {
         // drawLegend();
         vis
           .append("svg:circle")
@@ -260,6 +282,9 @@ export default {
           color = nodeArray[nodeArray.length - 1].color;
         }
         nodeArray.reverse();
+        if(this.ifRoot){
+          color = nodeArray[1] ? nodeArray[1].color : nodeArray[0].color
+        }
         let html = "<ul>";
         for (var i = 0; i < nodeArray.length; i++) {
           html +=
@@ -278,7 +303,7 @@ export default {
         sequence.style.opacity = 1;
       };
 
-      function mouseover(d) {
+      function mouseover (d) {
         //鼠标经过
         var percentage = ((100 * d.value) / totalSize).toPrecision(3);
         var percentageString = percentage + "%";
@@ -300,14 +325,14 @@ export default {
           .style("opacity", 0.7);
       }
 
-      function mouseleave(d) {
+      function mouseleave (d) {
         //鼠标离开
         sequence.style.opacity = "0";
         vis.selectAll("path").style("opacity", 1);
         explanation.style.visibility = "hidden";
       }
 
-      function getAncestors(node) {
+      function getAncestors (node) {
         var path = [];
         var current = node;
         while (current.parent) {
@@ -364,7 +389,7 @@ export default {
       // }
     }
   },
-  mounted() {
+  mounted () {
     this.init();
   }
 };
