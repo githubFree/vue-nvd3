@@ -148,6 +148,7 @@ export default {
       }
       if(data && data.length == 1){
         this.ifRoot = true
+        data[0].color = 'rgba(54,170,170,.6)';
         let j = 1
         for (let k in data[0].children) {
           if (!this.colors[j]) {
@@ -160,6 +161,8 @@ export default {
           data[0].children[k]['color'] = rgb;
           j++;
         }
+      }else{
+        this.ifRoot = false
       }
 
       //计算深度 s
