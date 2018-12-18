@@ -2,7 +2,7 @@
   <div>
     <h2>Line Bar combo chart</h2>
     <div class="uk-margin-bottom">
-      <vn-muti :model="traffics"
+      <vn-muti :model="model"
         :x-format="formatDate"
         :x2-format="formatDate"
         y-format=",f">
@@ -20,6 +20,7 @@
           <a href="#">Data</a>
         </li>
       </ul>
+      <div @click="model = traffics">点击</div>
       <ul id="tab-content"
         class="uk-switcher uk-margin">
         <li class="uk-active">
@@ -58,7 +59,8 @@ export default {
     const month = Faker.random.number(12)
 
     return {
-      trafficData: _.map(days, d => gen_item(month, d + 1))
+      trafficData: _.map(days, d => gen_item(month, d + 1)),
+      model: [],
     }
   },
   computed: {
