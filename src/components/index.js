@@ -8,8 +8,11 @@ import SunburstChart from "./SunburstChart";
 import SunburstHollowChart from "./SunburstHollowChart";
 import StackedAreaChart from "./StackedAreaChart";
 import GroupedMultiBar from "./GroupedBarChart";
+import MutiChart from "./MutiChart"
 import "nvd3/build/nv.d3.css";
-
+import "../module/dashed.css"
+import { addModel } from "../module/mutiChart";
+addModel()
 export default (Vue, options) => {
   Vue.component("vn-line", LineChart);
   Vue.component("vn-line-bar", LineBarChart);
@@ -21,4 +24,5 @@ export default (Vue, options) => {
   Vue.component("vn-SunburstHollow", SunburstHollowChart);
   Vue.component("vn-stacked-area", StackedAreaChart);
   Vue.component("vn-group-bar", GroupedMultiBar);
+  Vue.component("vn-muti", MutiChart);
 };

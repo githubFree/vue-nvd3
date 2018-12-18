@@ -62,8 +62,11 @@
                 <li>
                   <router-link :to="{name:'SunburstChart'}">Sunburst area chart</router-link>
                 </li>
-                <li class="uk-active">
+                <li>
                   <router-link :to="{name:'SunburstHollowChart'}">Sunburst Hollow Chart</router-link>
+                </li>
+                <li>
+                  <router-link :to="{name:'MutiChart'}">Muti Chart</router-link>
                 </li>
               </ul>
             </div>
