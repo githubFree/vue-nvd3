@@ -81,6 +81,7 @@ export default {
           chart.y2Axis.tickFormat(this.y2Format)
         }
       }
+      this.chartRef = chart
       d3.select(this.$refs.chart)
         .style('height', this.height)
         .datum(this.model)
