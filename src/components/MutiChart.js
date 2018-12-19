@@ -2,7 +2,7 @@
 import d3 from 'd3'
 import nv from 'nvd3'
 import BaseChartMixin from './BaseChartMixin'
-
+// import _ from 'lodash'
 export default {
   name: 'MutiChart',
   mixins: [BaseChartMixin],
@@ -56,7 +56,7 @@ export default {
       // let x = d3.scaleBand().range([0, 600]), xScale
       let xScale
       chart.xAxis.tickValues(function (values) {
-        var a = _.map(values[0].values, function (v) {
+        var a = values[0].values.map(function (v) {
           return new Date(v.x);
         })
         xScale = a
