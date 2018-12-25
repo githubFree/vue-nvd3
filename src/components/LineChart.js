@@ -5,7 +5,7 @@ import BaseChartMixin from './BaseChartMixin'
 export default {
   name: 'LineChart',
   mixins: [BaseChartMixin],
-  data() {
+  data () {
     return {
       min: null,
       max: 0
@@ -17,6 +17,9 @@ export default {
     },
     yFormat: {
       type: [Function, String]
+    },
+    xValues: {
+      type: Array
     },
     colors: {
       type: Array,
@@ -49,7 +52,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     nv.addGraph(() => {
       this.getLineMinMax();
       const chart = nv.models.lineChart()
@@ -62,14 +65,26 @@ export default {
       const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
       chart.lines.scatter.xScale(d3.time.scale.utc());
 
-      if (this.xFormat) {
-        if (typeof (this.xFormat) === 'string') {
-          xaxis.tickFormat(d3.format(this.xFormat))
-        } else {
-          xaxis.tickFormat(this.xFormat)
+
+
+      if (this.xValues) {
+        let valueKeys = []
+        this.xValues.map((item,i) => {
+          valueKeys.push(i)
+        })
+        chart.xAxis.tickValues(valueKeys).tickFormat((d, i) => {
+          return this.xValues[d]
+        })
+      } else {
+        if (this.xFormat) {
+          if (typeof (this.xFormat) === 'string') {
+            xaxis.tickFormat(d3.format(this.xFormat))
+          } else {
+            xaxis.tickFormat(this.xFormat)
+          }
         }
       }
-      
+
       const yaxis = chart.yAxis.showMaxMin(this.yAxisshowMaxMin)
       if (this.yFormat) {
         if (typeof (this.yFormat) === 'string') {

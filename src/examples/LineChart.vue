@@ -100,7 +100,7 @@ export default {
               "1532822400": 536308,
               "1532908800": 576147,
               "1532995200": 584994,
-              "1533081600": 7129644
+              "1533081600": 712964
             },
             uv: {
               "1532304000": 510658,
@@ -215,7 +215,34 @@ export default {
           originalKey: "qq",
           percent: 0.000579352902979353
         }
-      ]
+      ],
+      data2: [
+        {
+          key: "pc",
+          values: [
+            { x: 0, y: 23333 },
+            { x: 1, y: 23233 },
+            { x: 2, y: 11155 }
+          ]
+        },
+        {
+          key: "mobile",
+          values: [
+            { x: 0, y: 22333 },
+            { x: 1, y: 13333 },
+            { x: 2, y: 22535 }
+          ]
+        },
+        {
+          key: "ingame",
+          values: [
+            { x: 0, y: 23332 },
+            { x: 1, y: 13332 },
+            { x: 2, y: 45532 }
+          ]
+        }
+      ],
+      xValues: ['当日','次日','3留']
     };
   },
   mounted() {
@@ -282,7 +309,7 @@ export default {
       return d3.time.format("%x")(new Date(d));
     },
     changeModel() {
-      this.data.pop()
+      this.data.pop();
     }
   }
 };
