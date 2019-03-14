@@ -251,12 +251,12 @@ export function addModel () {
         bars2.yDomain(yScale2.domain());
         stack2.yDomain(yScale2.domain());
 
-        var rbcPercent= 0.1
+        var rbcPercent = 0.1
         if (dataStack1.length) { d3.transition(stack1Wrap).call(stack1); }
         if (dataStack2.length) { d3.transition(stack2Wrap).call(stack2); }
 
-        if (dataBars1.length) { d3.transition(bars1Wrap).call(bars1); rbcPercent = bars1.groupSpacing();}
-        if (dataBars2.length) { d3.transition(bars2Wrap).call(bars2); rbcPercent = bars2.groupSpacing();}
+        if (dataBars1.length) { d3.transition(bars1Wrap).call(bars1); rbcPercent = bars1.groupSpacing(); }
+        if (dataBars2.length) { d3.transition(bars2Wrap).call(bars2); rbcPercent = bars2.groupSpacing(); }
 
         if (dataLines1.length) { d3.transition(lines1Wrap).call(lines1); }
         if (dataLines2.length) { d3.transition(lines2Wrap).call(lines2); }
@@ -269,15 +269,17 @@ export function addModel () {
           ._ticks(nv.utils.calcTicksX(availableWidth / 100, data))
           .tickSize(-availableHeight, 0);
 
-          var itemSpace = availableWidth / (data[0].values.length * 10 + 1)
-          var rbcOffset = 5.5 * itemSpace
+        var itemSpace = availableWidth / (data[0].values.length * 10 + 1)
+        var rbcOffset = 5.5 * itemSpace
         g.select('.nv-x.nv-axis').attr('transform',
-        'translate(' + rbcOffset + ', ' + availableHeight + ') ' +
-        'scale(' + ((availableWidth - rbcOffset*2)/availableWidth) + ', 1)');
-          // .attr('transform', 'translate(0,' + availableHeight + ')');
+          'translate(' + rbcOffset + ', ' + availableHeight + ') ' +
+          'scale(' + ((availableWidth - rbcOffset * 2) / availableWidth) + ', 1)');
+        // .attr('transform', 'translate(0,' + availableHeight + ')');
         d3.transition(g.select('.nv-x.nv-axis'))
           .call(xAxis);
-
+        d3.selectAll('g.nv-x.nv-axis text').each(function (d, i) {
+          this.setAttribute('transform', 'scale(' + 1 / ((availableWidth - rbcOffset * 2) / availableWidth) + ', 1)')
+        })
         yAxis1
           ._ticks(nv.utils.calcTicksY(availableHeight / 36, data))
           .tickSize(-availableWidth, 0);
