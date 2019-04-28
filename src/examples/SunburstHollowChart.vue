@@ -2,7 +2,7 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-SunburstHollow :model="traffics2"
+      <vn-SunburstHollow :model="traffics"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
@@ -12,7 +12,6 @@
         width="300"
         :pathInverted="false"
         :showLabels="true"
-        :colors="colors"
         :labelFormat="labelFormat"
         :promptText="'路径由此扩散'"
         :elementMousemove="elementMousemove">
@@ -55,11 +54,7 @@ export default {
   },
   data () {
     return {
-      kimi: 4000,
-      colors: ['#36AAAA', '#58C7F1', '#F8A93C', '#F57844', '#6495ed',
-        '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
-        '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
-        '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0']
+      kimi: 4000
     }
   },
   computed: {

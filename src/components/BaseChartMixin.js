@@ -6,7 +6,27 @@ export default {
     height: {
       type: String,
       default: "300px"
-    }
+    },
+    colors: {
+      type: Array,
+      default: () => [
+        "#eb3b5a",
+        "#fed330",
+        "#4b7bec",
+        "#a55eea",
+        "#fa8231",
+        "#20bf6b",
+        "#45aaf2",
+        "#fd9644",
+        "#2bcbba",
+        "#3867d6",
+        "#3867d6",
+        "#26de81",
+        "#f7b731",
+        "#0fb9b1",
+        "#60b1e3"
+      ]
+    },
   },
   data() {
     return {

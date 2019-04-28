@@ -9,8 +9,7 @@ export default {
     xFormat: {type: [Function, String]},
     yFormat: {type: [Function, String]},
     showDistX: {type: Boolean, default: true},
-    showDistY: {type: Boolean, default: true},
-    colors: {type: Array, default: () => ['#82DFD6', '#ddd']}
+    showDistY: {type: Boolean, default: true}
   },
   mounted () {
     nv.addGraph(() => {

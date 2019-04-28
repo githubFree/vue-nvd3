@@ -10,7 +10,6 @@
         :height="'500'"
         modeType="value"
         width="100%"
-        :colors="colors"
         :showLabels="true"
         :labelFormat="labelFormat"
         :elementMousemove="elementMousemove">

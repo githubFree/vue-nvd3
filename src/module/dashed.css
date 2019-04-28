@@ -1,3 +1,10 @@
 .dashed { 
   stroke-dasharray: 5, 5; 
 } 
+.nvd3.nv-pie path{
+  fill-opacity: 1 !important;
+}
+
+.nvd3.nv-pie text{
+  fill: rgb(255,255,255) !important;
+}

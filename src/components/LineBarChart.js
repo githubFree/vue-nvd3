@@ -17,10 +17,6 @@ export default {
     },
     y2Format: {
       type: [Function, String]
-    },
-    colors: {
-      type: Array,
-      default: () => ['#82DFD6', '#ddd']
     }
   },
   mounted() {

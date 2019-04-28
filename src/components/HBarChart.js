@@ -14,8 +14,7 @@ export default {
     yFormat: { type: [Function, String] },
     height: { type: Number, default: 350 },
     showLegend: { type: Boolean, default: true },
-    showControls: { type: Boolean, default: true },
-    colors: { type: Array, default: () => ["#82DFD6", "#ddd"] }
+    showControls: { type: Boolean, default: true }
   },
   mounted() {
     nv.addGraph(() => {
