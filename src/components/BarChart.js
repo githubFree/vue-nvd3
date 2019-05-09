@@ -9,8 +9,7 @@ export default {
     valueField: { type: String, default: "value" },
     staggerLabels: { type: Boolean, default: true },
     tooltips: { type: Boolean, default: false },
-    showValues: { type: Boolean, default: true },
-    colors: { type: Array, default: () => ["#82DFD6", "#ddd"] }
+    showValues: { type: Boolean, default: true }
   },
   mounted() {
     const textField = this.textField;

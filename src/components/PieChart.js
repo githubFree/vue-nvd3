@@ -20,10 +20,9 @@ export default {
     labelThreshold: { type: Number, default: 0.05 },
     labelType: { type: String, default: 'percent' },
     donut: { type: Boolean, default: false },
-    donutRatio: { type: Number, default: 0.35 },
+    donutRatio: { type: Number, default: 0.65 },
     textField: { type: String, default: 'label' },
     valueField: { type: String, default: 'value' },
-    colors: { type: Array, default: () => ['#82DFD6', '#ddd'] },
     valueFormat: {
       type: Function,
       default: d3.format(',.1f')
@@ -49,6 +48,11 @@ export default {
         .color(this.colors)
         .valueFormat(this.valueFormat)
 
+      console.log(chart)
+
+      d3.selectAll("svg .nv-groups > nv-group")
+        .transition()
+        .style("fill-opacity", 0);
       if (this.width) {
         chart.width(this.width)
       }

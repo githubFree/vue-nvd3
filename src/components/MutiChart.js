@@ -13,10 +13,6 @@ export default {
     yFormat: {
       type: [Function, String]
     },
-    colors: {
-      type: Array,
-      default: () => ['#82DFD6', '#ddd', '#ff0000']
-    },
     height: {
       default: '300'
     },

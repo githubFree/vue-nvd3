@@ -12,21 +12,6 @@ export default {
         }
       }
     },
-    colors: {
-      type: Array,
-      // default: () => [
-      //   'rgba(54,170,170,1)',
-      //   'rgba(220,20,60,1)',
-      //   'rgba(139,0,139,1)',
-      //   'rgba(72,61,139,1)',
-      //   'rgba(0,0,255,1)',
-      //   'rgba(30,144,255,1)',
-      //   'rgba(0,139,139,1)',
-      //   'rgba(0,255,127,1)',
-      //   'rgba(255,255,0,1)',
-      // ]
-      default: () => ['#ba55d3', '#ffd700']
-    },
     promptText: {
       type: String,
       default: "的访问来源于此"
@@ -79,6 +64,26 @@ export default {
     elementMousemove: {
       type: Function,
       default: () => { }
+    },
+    colors: {
+      type: Array,
+      default: () => [
+        "#eb3b5a",
+        "#fed330",
+        "#4b7bec",
+        "#a55eea",
+        "#fa8231",
+        "#20bf6b",
+        "#45aaf2",
+        "#fd9644",
+        "#2bcbba",
+        "#3867d6",
+        "#3867d6",
+        "#26de81",
+        "#f7b731",
+        "#0fb9b1",
+        "#60b1e3"
+      ]
     }
   },
   render (h) {
@@ -139,6 +144,7 @@ export default {
       let data = this.model.children;
       var i = 0;
       for (let k in data) {
+        
         if (!this.colors[i]) {
           i = 0;
         }
@@ -146,6 +152,7 @@ export default {
         data[k]['color'] = rgb;
         i++;
       }
+      console.log(data)
       if(data && data.length == 1){
         this.ifRoot = true
         data[0].color = 'rgba(54,170,170,.6)';
