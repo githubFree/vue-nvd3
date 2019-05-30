@@ -66,27 +66,27 @@ export default {
       pages: [
         {
           name: '首页',
-          views: Faker.random.number(1000000),
+          views: 20000,
           stay: Faker.random.number(100),
           ratio: Faker.random.number(100) / 100
         }, {
           name: '产品详情',
-          views: Faker.random.number(1000000),
+          views: 10000,
           stay: Faker.random.number(100),
           ratio: Faker.random.number(100) / 100
         }, {
           name: '搜索结果',
-          views: Faker.random.number(1000000),
+          views: 5000,
           stay: Faker.random.number(100),
           ratio: Faker.random.number(100) / 100
         }, {
           name: '产品列表',
-          views: Faker.random.number(1000000),
+          views: 4000,
           stay: Faker.random.number(100),
           ratio: Faker.random.number(100) / 100
         }, {
           name: '购物车',
-          views: Faker.random.number(1000000),
+          views: 3000,
           stay: Faker.random.number(100),
           ratio: Faker.random.number(100) / 100
         }
@@ -96,3 +96,13 @@ export default {
   }
 }
 </script>
+<style>
+.nvd3.nv-pie path{
+  fill-opacity: 1 !important;
+}
+
+.nvd3.nv-pie text{
+  fill: rgb(255,255,255) !important;
+}
+</style>
+
