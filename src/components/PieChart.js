@@ -48,8 +48,6 @@ export default {
         .color(this.colors)
         .valueFormat(this.valueFormat)
 
-      console.log(chart)
-
       d3.selectAll("svg .nv-groups > nv-group")
         .transition()
         .style("fill-opacity", 0);

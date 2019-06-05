@@ -137,10 +137,9 @@ export default {
         data[k]['color'] = rgb;
         i++;
       }
-      console.log(data)
       if(data && data.length == 1){
         this.ifRoot = true
-        data[0].color = 'rgba(54,170,170,.6)';
+        data[0].color = this.colors[0];
         let j = 1
         for (let k in data[0].children) {
           if (!this.colors[j]) {
