@@ -2,7 +2,8 @@
   <div>
     <h2>sunburst chart</h2>
     <div class="uk-margin-bottom">
-      <vn-SunburstHollow :model="traffics"
+      <vn-SunburstHollow
+        :model="traffics2"
         :margin="{left: 70, bottom: 30, right: 0}"
         mode="value"
         :elementClick="elementClick"
@@ -14,23 +15,19 @@
         :showLabels="true"
         :labelFormat="labelFormat"
         :promptText="'路径由此扩散'"
-        :elementMousemove="elementMousemove">
-      </vn-SunburstHollow>
+        :elementMousemove="elementMousemove"
+      ></vn-SunburstHollow>
     </div>
     <div class="uk-width-medium-1-1">
-      <ul class="uk-tab"
-        data-uk-tab="{connect:'#tab-content'}">
-        <li class="uk-active"
-          aria-expanded="true">
+      <ul class="uk-tab" data-uk-tab="{connect:'#tab-content'}">
+        <li class="uk-active" aria-expanded="true">
           <a href="#">HTML</a>
         </li>
-        <li aria-expanded="false"
-          class="">
+        <li aria-expanded="false" class>
           <a href="#">Data</a>
         </li>
       </ul>
-      <ul id="tab-content"
-        class="uk-switcher uk-margin">
+      <ul id="tab-content" class="uk-switcher uk-margin">
         <li class="uk-active">
           <pre><code>&lt;vn-sunburst :model="data"
       :margin="{left: 70, bottom: 30, right: 0}"&gt;
@@ -44,26 +41,26 @@
   </div>
 </template>
 <script>
-import d3 from 'd3'
+import d3 from "d3";
 
 export default {
-  created: function () {
+  created: function() {
     // setTimeout(() => {
     //   this.kimi = 400;
     // }, 2000)
   },
-  data () {
+  data() {
     return {
       kimi: 4000
-    }
+    };
   },
   computed: {
-    traffics () {
+    traffics() {
       let data = {
         name: "root",
         children: [
           {
-            name: 'enter',
+            name: "enter",
             size: 10000
           },
           {
@@ -108,14 +105,15 @@ export default {
             ]
           }
         ]
-      }
+      };
       return data;
-    }, traffics1 () {
+    },
+    traffics1() {
       let data = {
         name: "root",
         children: [
           {
-            name: 'ent1er',
+            name: "ent1er",
             size: 100
           },
           {
@@ -160,14 +158,15 @@ export default {
             ]
           }
         ]
-      }
+      };
       return data;
-    }, traffics2 () {
+    },
+    traffics2() {
       let data = {
         name: "root",
         children: [
           {
-            name: 'index',
+            name: "index",
             size: 100,
             children: [
               {
@@ -188,31 +187,31 @@ export default {
                 ]
               }
             ]
-          },
+          }
         ]
-      }
+      };
       return data;
-    },
+    }
   },
   methods: {
-    labelFormat (d) {
+    labelFormat(d) {
       return 111;
     },
-    formatDate (d) {
-      return d3.time.format('%x')(new Date(d))
+    formatDate(d) {
+      return d3.time.format("%x")(new Date(d));
     },
-    elementMousemove (event) {
+    elementMousemove(event) {
       // console.log(event);
     },
-    elementClick (event) {
-      console.log(event);
+    elementClick(event) {
+
     },
-    tooltip (d) {
+    tooltip(d) {
       let total = this.traffics[0].total;
-      return (d / total * 100).toFixed(2) + '%';
+      return ((d / total) * 100).toFixed(2) + "%";
     }
   }
-}
+};
 </script>
 <style>
 .explanation {

@@ -874,7 +874,7 @@ export default {
       // console.log(event);
     },
     elementClick (event) {
-      console.log(event);
+
     },
     tooltip (d) {
       let total = this.traffics[0].total;

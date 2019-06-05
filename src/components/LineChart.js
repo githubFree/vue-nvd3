@@ -59,7 +59,7 @@ export default {
         .interpolate(this.interpolate)
         .color(this.colors)
       const xaxis = chart.xAxis.showMaxMin(this.xAxisshowMaxMin)
-      chart.lines.scatter.xScale(d3.time.scale.utc());
+      chart.lines.scatter.xScale(d3.time.scale());
 
 
 

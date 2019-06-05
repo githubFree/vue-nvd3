@@ -103,7 +103,7 @@ export default {
           values: data
         };
       });
-      console.log(data, 'data');
+
       return data;
     }
   },

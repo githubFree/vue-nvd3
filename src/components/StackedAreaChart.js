@@ -78,7 +78,6 @@ export default {
         }
       }
       if (this.yFormat) {
-        console.log(this.yFormat);
         if (typeof this.yFormat === "string") {
           chart.yAxis.tickFormat(d3.format(this.yFormat));
         } else {

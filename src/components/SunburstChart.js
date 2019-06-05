@@ -51,8 +51,6 @@ export default {
         chart.height(this.height);
       }
       setTimeout(() => {
-        // let data = false;
-        console.log(this.model[0].children[9]);
         this.elementClick({
           data: this.model[0].children[9],
           index: 83
@@ -62,7 +60,6 @@ export default {
         this.elementMousemove(event);
       });
       chart.sunburst.dispatch.on("elementClick", event => {
-        console.log(event);
         this.elementClick(event);
       });
       let self = this;
