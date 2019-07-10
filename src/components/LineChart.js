@@ -26,7 +26,7 @@ export default {
     },
     interpolate: {
       type: String,
-      default: 'cardinal'
+      default: 'linear'
     },
     xAxisshowMaxMin: {
       type: Boolean,

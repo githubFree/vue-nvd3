@@ -3,7 +3,7 @@
 } 
 .nvd3.nv-pie path{
   fill-opacity: 1 !important;
-  stroke-width: 4px;
+  stroke-width: 2px;
 }
 
 .nvd3.nv-pie text{
