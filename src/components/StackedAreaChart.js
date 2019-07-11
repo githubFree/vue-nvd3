@@ -68,7 +68,7 @@ export default {
           stream: "流",
           expanded: "扩展"
         });
-      chart.xScale(d3.time.scale.utc());
+      chart.xScale(d3.time.scale());
       //Axis settings
       if (this.xFormat) {
         if (typeof this.xFormat === "string") {
