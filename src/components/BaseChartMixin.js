@@ -14,13 +14,13 @@ export default {
       default: () => colorDefault
     },
   },
-  data() {
+  data () {
     return {
       chartRef: undefined
     };
   },
   watch: {
-    model(value) {
+    model (value) {
       if (this.chartRef) {
         if (this.$vnode.componentOptions.tag == 'vn-line') {
           this.getLineMinMax();
@@ -31,18 +31,18 @@ export default {
     }
   },
   methods: {
-    getLineMinMax() {
+    getLineMinMax () {
       let data = this.model;
-      let min = 0,max = 0
+      let min = 0, max = 0
       data.map((item) => {
         item.values.map((v) => {
           if (min == 0) {
             min = v.y;
           }
-          if(v.y > max){
+          if (v.y > max) {
             max = v.y
           }
-          if(v.y < min){
+          if (v.y < min) {
             min = v.y
           }
         });
@@ -55,7 +55,7 @@ export default {
         this.margin.left = this.max.toString().length - 1 + '0'
       }
     },
-    redraw(chart) {
+    redraw (chart) {
       d3.select(this.$refs.chart)
         .style({
           width: this.width,
@@ -67,7 +67,15 @@ export default {
         .call(chart);
     }
   },
-  render(h) {
-    return <svg ref = "chart" / > ;
+  render (h) {
+    return <svg ref="chart" />;
+  },
+  beforeDestroy () {
+    if (this.chartRef && this.chartRef.tooltip) {
+      this.chartRef.tooltip.hidden(true)
+    } else {
+      return;
+    }
+
   }
 };
