@@ -71,11 +71,12 @@ export default {
     return <svg ref="chart" />;
   },
   beforeDestroy () {
-    if (this.chartRef && this.chartRef.tooltip) {
-      this.chartRef.tooltip.hidden(true)
-    } else {
-      return;
+    let nv = document.getElementsByClassName('nvtooltip')
+    if (nv.length > 0) {
+      for (let i = 0; i < nv.length; i++) {
+        nv[i].style.opacity = 0
+        nv[i].style.display="block"
+      }
     }
-
   }
 };
