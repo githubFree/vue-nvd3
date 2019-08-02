@@ -75,7 +75,6 @@ export default {
     if (nv.length > 0) {
       for (let i = 0; i < nv.length; i++) {
         nv[i].style.opacity = 0
-        nv[i].style.display="block"
       }
     }
   }
