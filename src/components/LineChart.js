@@ -62,10 +62,9 @@ export default {
       chart.lines.scatter.xScale(d3.time.scale());
 
 
-
       if (this.xValues) {
         let valueKeys = []
-        this.xValues.map((item,i) => {
+        this.xValues.map((item, i) => {
           valueKeys.push(i)
         })
         chart.xAxis.tickValues(valueKeys).tickFormat((d, i) => {
