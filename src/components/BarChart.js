@@ -20,12 +20,11 @@ export default {
         .discreteBarChart()
         .x(d => d[textField])
         .y(d => d[valField])
-        //.colors(this.colors)
+        .color(this.colors)
         .staggerLabels(this.staggerLabels) //Too many bars and not enough room? Try staggering labels.
         //.tooltips(this.tooltips)        //Don't show tooltips
         .showValues(this.showValues); //...instead, show the bar value right on top of each bar.
       //.transitionDuration(350)
-
       this.redraw(chart);
       this.chartRef = chart;
 
